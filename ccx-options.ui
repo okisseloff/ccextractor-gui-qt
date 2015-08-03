@@ -1,0 +1,1814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CCXOptions</class>
+ <widget class="QWidget" name="CCXOptions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>740</width>
+    <height>430</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ccx-gui-res.qrc">
+    <normaloff>:/cc.png</normaloff>:/cc.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QGroupBox { 
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin-top: 1ex; 
+}
+QGroupBox::title {
+	border: 0px outset gray;
+	border-radius: 0px;
+	subcontrol-origin: margin;
+	color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+			 stop: 0 #111111, stop: 0.7 #111111, stop: 1 #888888);
+	subcontrol-position: top left; 
+}</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>741</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>3</number>
+   </property>
+   <widget class="QWidget" name="tabInput">
+    <attribute name="title">
+     <string>Input</string>
+    </attribute>
+    <widget class="QGroupBox" name="gbGeneral">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>441</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>General</string>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>420</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="cbLiveStream">
+         <property name="text">
+          <string>Live stream. Wait when no data arrives for </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbLiveStreamWait">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maximum">
+          <number>120</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lLiveStreamSeconds">
+         <property name="text">
+          <string>seconds</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>421</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_5">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lInputType">
+         <property name="text">
+          <string>Input type:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cbInputType"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lSplitType">
+         <property name="text">
+          <string>Split type:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cbSplitType"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbInputTime">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>10</y>
+       <width>271</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Timing</string>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="cbStartAt">
+         <property name="text">
+          <string>Process from</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="teStartAt">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QCheckBox" name="cbEndAt">
+         <property name="text">
+          <string>Process until</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="teEndAt">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbClock">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>81</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Clock</string>
+     </property>
+     <widget class="QRadioButton" name="rbClockAuto">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Auto</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbClockGOP">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>GOP</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbClockPTS">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PTS</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbMythTV">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>130</y>
+       <width>301</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Myth TV</string>
+     </property>
+     <widget class="QRadioButton" name="rbMythTVAuto">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>107</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Auto</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbMythTVForce">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Force usage of Myth TV decoder</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbMythTVDisable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>191</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Disable Myth TV decoder</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbInputMultiprogram">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>130</y>
+       <width>321</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Multiple Programs</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>301</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="cbMultiprogram">
+         <property name="text">
+          <string>File contains multiple programs</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbMultiprogramAuto">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Process first suitable program</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QRadioButton" name="rbMultiprogramNumber">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Process program with number</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sbMultiprogramNumber">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximum">
+            <number>32000</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbElementaryStream">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>250</y>
+       <width>341</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Elementary Stream</string>
+     </property>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>301</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="verticalSpacing">
+        <number>6</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="rbESAuto">
+         <property name="text">
+          <string>Auto</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="rbESType">
+         <property name="text">
+          <string>Process first stream of type</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbESType">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maximum">
+          <number>256</number>
+         </property>
+         <property name="displayIntegerBase">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QRadioButton" name="rbESPID">
+         <property name="text">
+          <string>Process stream with PID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="sbESPID">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maximum">
+          <number>32748</number>
+         </property>
+         <property name="displayIntegerBase">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="cbTreatMPEGTypeAs">
+         <property name="text">
+          <string>Assume MPEG type is</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="sbTreatMPEGTypeAs">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbTeletext">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>250</y>
+       <width>371</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Teletext</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>321</width>
+        <height>105</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QRadioButton" name="rbTeletextAuto">
+         <property name="text">
+          <string>Auto</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbTeletextForce">
+         <property name="text">
+          <string>Force Teletext decoder</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbTeletextDisable">
+         <property name="text">
+          <string>Disable Teletext decoder</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QCheckBox" name="cbTeletextPage">
+           <property name="text">
+            <string>Process Teletext Page number</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sbTeletextPage">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabInput2">
+    <attribute name="title">
+     <string>Input (2)</string>
+    </attribute>
+    <widget class="QGroupBox" name="gbInputMisc">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>721</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Miscellaneous</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>631</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="cbMisc90090">
+         <property name="text">
+          <string>Use 90090 as MPEG clock frequency instead of 90000 (needed for some DVDs)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscFixPadding">
+         <property name="text">
+          <string>Use 0000 as CC padding instead of 8080</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscPicOrder">
+         <property name="text">
+          <string>Use the pic_order_cnt_lsb in AVC/H.264 data streams to order the CC information</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscWTV">
+         <property name="text">
+          <string>Work around a bug in Windows 7's built in software when converted from *.wtv to *.dvr-ms</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscHaup">
+         <property name="text">
+          <string>File was captured from Hauppauge card</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscMP4ForceVideo">
+         <property name="text">
+          <string>Force processing video track in MP4 (instead of dedicated CC track)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscNoTimeRef">
+         <property name="text">
+          <string>Ignore broadcast date information (only affects Teletext in timed transcript with -datets)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QCheckBox" name="cbScreenfuls">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sbScreenfulsCount">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximum">
+            <number>1000000</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lScreenfulsSeconds">
+           <property name="text">
+            <string>screenfuls and terminate processing</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabDebug">
+    <attribute name="title">
+     <string>Debug</string>
+    </attribute>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>721</width>
+       <height>381</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="cbDebugNoSync">
+        <property name="text">
+         <string>NoSync (Disable the syncing code. Only useful for debugging purposes.)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QCheckBox" name="cbDebugFullBin">
+        <property name="text">
+         <string>FullBin (Disable the removal of trailing padding blocks when exporting to bin format)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cbDebug608">
+        <property name="text">
+         <string>608 (Print debug traces from the EIA-608 decoder)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="cbDebugES">
+        <property name="text">
+         <string>ES (Print debug info about the analyzed elementary video stream)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="cbDebugPTS">
+        <property name="text">
+         <string>GOP and PTS (Enable lots of time stamp output)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QCheckBox" name="cbDebugParse">
+        <property name="text">
+         <string>Parse (Print debug info about the parsed container file. Only for TS/ASF files at the moment.)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QCheckBox" name="cbDebugPAT">
+        <property name="text">
+         <string>PAT (Print Program Association Table dump)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QCheckBox" name="cbDebugInvestigate">
+        <property name="text">
+         <string>Investigate packets (If no CC packets are detected using the PMT, try to find data in all packets by scanning)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QCheckBox" name="cbDebugPMT">
+        <property name="text">
+         <string>PMT (Print Program Map Table dump)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="cbDebugXDS">
+        <property name="text">
+         <string>XDS (Enable XDS debug data (lots of it))</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="cbDebugRaw">
+        <property name="text">
+         <string>Raw (Print debug trace with the raw 608/708 data with time stamps)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbDebug708">
+        <property name="text">
+         <string>708 (Print debug information from the EIA-708 (DTV) decoder)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QCheckBox" name="cbDebugTeletext">
+        <property name="text">
+         <string>Teletext decoder verbose mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QCheckBox" name="cbDebugESFile">
+          <property name="text">
+           <string>Write ES to a file</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="leDebugESFile">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDebugESFile">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Browse</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabOutput">
+    <attribute name="title">
+     <string>Output</string>
+    </attribute>
+    <widget class="QGroupBox" name="gbOutputGeneral">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>721</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>General</string>
+     </property>
+     <widget class="QWidget" name="formLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>701</width>
+        <height>114</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cbOutputType"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cbOutputPath">
+         <property name="text">
+          <string>Output filename:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="leOutputPath">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnOutputPath">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbSubDelay">
+         <property name="text">
+          <string>Delay subtitles for</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <widget class="QSpinBox" name="sbSubDelay">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimum">
+            <number>-100000</number>
+           </property>
+           <property name="maximum">
+            <number>100000</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelMilliseconds">
+           <property name="text">
+            <string>milliseconds</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelOutputType">
+         <property name="text">
+          <string>      Output type:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbOutputEncoding">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>121</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Encoding</string>
+     </property>
+     <widget class="QRadioButton" name="rbEncodingUTF8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>107</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UTF-8</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbEncodingLatin1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>107</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Latin 1</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbNewLine">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>130</y>
+       <width>191</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>New Line</string>
+     </property>
+     <widget class="QRadioButton" name="rbOutputNewLineLF">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LF (Unix-like)</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOutputNewLineCRLF">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CRLF (DOS, Windows)</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbCapitalization">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>130</y>
+       <width>391</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Capitalization</string>
+     </property>
+     <widget class="QCheckBox" name="cbOutputSentenceCap">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>221</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sentence capitalization</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>371</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <widget class="QCheckBox" name="cbOutputCapFile">
+         <property name="text">
+          <string>Cap file</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leOutputCapFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnOutputCapFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbOutputStyleColor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>361</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Color and Style</string>
+     </property>
+     <widget class="QCheckBox" name="cbOutputNoTypeTags">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>331</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Don't add typesetting tags (bold, italic, etc)</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbOutputNoColorTags">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Don't add color tags</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbOutputTrim">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Trim lines</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbOutputDefaultColor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>191</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Default color (RRGGBB) #</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leOutputDefaultColor">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>140</y>
+        <width>81</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbOutputAutodash">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>321</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Attempt to guess phrase start and put dash</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbOutputTranscript">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>220</y>
+       <width>351</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Transcript</string>
+     </property>
+     <widget class="QCheckBox" name="cbOutputTranscriptUnixRef">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>161</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string extracomment="asdasd"/>
+      </property>
+      <property name="text">
+       <string>UNIX time reference</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbOutputTranscriptUCLA">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UCLA Format</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leOutputTranscriptUnixRef">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOutputTranscriptTimeDefault">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>211</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Write time in default format</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOutputTranscriptTimeDate">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>291</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Write time as YYYYMMDDHHMMss,ms</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOutputTranscriptTimeSSMS">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Write time as ss,ms</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabDecoder">
+    <attribute name="title">
+     <string>Decoder</string>
+    </attribute>
+    <widget class="QGroupBox" name="gbDecoderBuffering">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>10</y>
+       <width>211</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Input buffer</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>191</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QRadioButton" name="rbDecoderBufferAuto">
+         <property name="text">
+          <string>Auto</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbDecoderBufferForce">
+         <property name="text">
+          <string>Force input buffering</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbDecoderBufferDisable">
+         <property name="text">
+          <string>Disable input buffering</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="formLayout_4">
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="leDecoderBufferSize">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>16M</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="cbDecoderBufferSize">
+           <property name="text">
+            <string>Buffer size</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbDecoderRollUp">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>10</y>
+       <width>271</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Roll-Up captions</string>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>223</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QCheckBox" name="cbDecoderRollUpDirect">
+         <property name="text">
+          <string>Direct Roll-Up (char by char)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbDecoderRollUpLineOnce">
+         <property name="text">
+          <string>Write repeated lines only once</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbDecoderRollUpLimit">
+         <property name="text">
+          <string>Limit Roll-Up lines:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="2">
+        <widget class="QRadioButton" name="rbDecoderRollUpLimit3">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>3 lines</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QRadioButton" name="rbDecoderRollUpLimit2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>2 lines</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="rbDecoderRollUpLimit1">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>1 line</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbDecoderFields">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>221</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Fields and Channels</string>
+     </property>
+     <widget class="QCheckBox" name="cbDecoderField1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>161</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Extract from Field 1</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbDecoderField2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Extract from Field 2</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbDecoderChannel2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Extract from channel 2</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbCEA708">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>721</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>CEA-708</string>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>701</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_15">
+       <item>
+        <widget class="QCheckBox" name="cbCEA708EnableServices">
+         <property name="text">
+          <string>Enable CEA-708 decoder for services (comma delimited values, e.g&quot;1,2&quot; )</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leCEA708Services">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabCredits">
+    <attribute name="title">
+     <string>Credits</string>
+    </attribute>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>721</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="gbCreditsStart">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>721</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Start Credits</string>
+     </property>
+     <widget class="QCheckBox" name="cbEnableStartCredits">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enable</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteCreditsStart">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>621</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>321</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QCheckBox" name="cbCreditsStartAfter">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>After</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="teCreditsAfter">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="displayFormat">
+          <string>mm:ss</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbCreditsStartBefore">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Before</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTimeEdit" name="teCreditsBefore">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="displayFormat">
+          <string>mm:ss</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>551</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QCheckBox" name="cbCreditsStartDisplay">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Display credits at least </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbCreditsStartAtLeast">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCreditsStart1">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>seconds and not longer than</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbCreditsStartAtMost">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCreditsStart2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>seconds</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbCreditsEnd">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>240</y>
+       <width>721</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>End Credits</string>
+     </property>
+     <widget class="QCheckBox" name="cbEnableEndCredits">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enable</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="pteCreditsEnd">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>621</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>551</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QCheckBox" name="cbCreditsEndDisplay">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Display credits at least </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbCreditsEndAtLeast">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCreditsEnd1">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>seconds and not longer than</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbCreditsEndAtMost">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCreditsEnd2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>seconds</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>350</y>
+       <width>721</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="ccx-gui-res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
