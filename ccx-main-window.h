@@ -5,6 +5,7 @@
 #include <QProcess>
 #include <QFile>
 #include "ccx-options.h"
+#include "ccx-about.h"
 
 namespace Ui {
 	class CCXMainWindow;
@@ -44,6 +45,7 @@ private:
 	Ui::CCXMainWindow *ui;
 
 	CCXOptions *optionsWindow;
+    CCXAbout *aboutWindow;
 
 	QString cmdline; //Result cmd line
 	QString options; //Options set in CCXOptions Window

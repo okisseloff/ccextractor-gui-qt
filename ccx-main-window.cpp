@@ -14,6 +14,7 @@ CCXMainWindow::CCXMainWindow(QWidget *parent) :
 	ui->setupUi(this);
 	this->setFixedSize(this->width(), this->height());
 	optionsWindow = new CCXOptions();
+    aboutWindow = NULL;
 
 	connect(ui->btnOptions, SIGNAL(clicked()), this, SLOT(on_btnOptions_clicked()));
 	connect(optionsWindow, SIGNAL(onWidgetClosed()),
@@ -285,5 +286,8 @@ void CCXMainWindow::on_menuBar_exit_clicked()
 
 void CCXMainWindow::on_menuBar_about_clicked()
 {
-
+    if (!aboutWindow) {
+        aboutWindow = new CCXAbout();
+    }
+    aboutWindow->show();
 }

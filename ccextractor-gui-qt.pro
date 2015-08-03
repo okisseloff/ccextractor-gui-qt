@@ -11,15 +11,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
 	ccx-options.cpp \
-	ccx-main-window.cpp
+	ccx-main-window.cpp \
+    ccx-about.cpp
 
 HEADERS  += \
 	ccx-options.h \
-	ccx-main-window.h
+	ccx-main-window.h \
+    ccx-about.h
 
 FORMS	+= \
 	ccx-main-window.ui \
-	ccx-options.ui
+	ccx-options.ui \
+    ccx-about.ui
 
 RESOURCES += \
 	ccx-gui-res.qrc
