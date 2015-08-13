@@ -95,7 +95,7 @@ void CCXMainWindow::on_cmdLine_updated()
 QString CCXMainWindow::getBinaryCmd()
 {
 #ifdef Q_OS_WIN
-	return "ccextractor.exe"
+	return "ccextractor.exe";
 #else
 	return "./ccextractor";
 #endif
