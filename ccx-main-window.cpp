@@ -14,7 +14,8 @@ CCXMainWindow::CCXMainWindow(QWidget *parent) :
 	ui->setupUi(this);
 	this->setFixedSize(this->width(), this->height());
 	optionsWindow = new CCXOptions();
-    aboutWindow = NULL;
+	aboutWindow = NULL;
+	extractionProcess = NULL;
 
 	connect(ui->btnOptions, SIGNAL(clicked()), this, SLOT(on_btnOptions_clicked()));
 	connect(optionsWindow, SIGNAL(onWidgetClosed()),
