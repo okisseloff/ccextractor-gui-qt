@@ -36,13 +36,13 @@ QGroupBox::title {
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>10</y>
      <width>741</width>
      <height>431</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>6</number>
    </property>
    <widget class="QWidget" name="tabInput">
     <attribute name="title">
@@ -492,7 +492,7 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>321</width>
-        <height>105</height>
+        <height>108</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1527,8 +1527,8 @@ QGroupBox::title {
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt;&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="gbCreditsStart">
@@ -1799,10 +1799,473 @@ p, li { white-space: pre-wrap; }
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabHardsubx">
+    <attribute name="title">
+     <string>Burned-in Subtitle Extraction</string>
+    </attribute>
+    <widget class="QCheckBox" name="cbHardsubx">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>461</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Perform burned-in subtitle extraction</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="gbSubColor">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>141</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Subtitle Color</string>
+     </property>
+     <widget class="QRadioButton" name="rbSubColorWhite">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>White</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorYellow">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Yellow</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorGreen">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Green</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorCyan">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cyan</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorBlue">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Blue</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorMagenta">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Magenta</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorRed">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Red</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbSubColorCustom">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>230</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Custom</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leSubColorCustom">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>230</y>
+        <width>51</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>60</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Custom hue can be</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>between 1 and 360</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Refer to HSV color</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>59</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>chart</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbOcrMode">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>40</y>
+       <width>151</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>OCR Mode</string>
+     </property>
+     <widget class="QRadioButton" name="rbOcrModeFrame">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Frame - wise</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOcrModeWord">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Word - wise</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOcrModeLetter">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Letter - wise</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbConfThresh">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>170</y>
+       <width>271</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Confidence Threshold</string>
+     </property>
+     <widget class="QSlider" name="hsConfThresh">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksBothSides</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelConfThresh">
+      <property name="geometry">
+       <rect>
+        <x>228</x>
+        <y>30</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.0</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbLumThresh">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>170</y>
+       <width>271</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Luminance Threshold (for white subs)</string>
+     </property>
+     <widget class="QSlider" name="hsLumThresh">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="value">
+       <number>95</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksBothSides</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelLumThresh">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>40</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>95.0</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCheckBox" name="cbEnableItalicDetection">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>260</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Perform Italic Detection</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="gbMinSubDuration">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>40</y>
+       <width>381</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Minimum Subtitle Duration</string>
+     </property>
+     <widget class="QLineEdit" name="leMinSubDuration">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>20</y>
+        <width>51</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>251</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Set the minimum subtitle duration :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>55</y>
+        <width>341</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lower values give better results but take more time</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>85</y>
+        <width>251</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.5 is the recommended value</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>288</x>
+        <y>20</y>
+        <width>81</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>seconds</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
