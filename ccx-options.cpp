@@ -83,6 +83,7 @@ QString CCXOptions::getCommandLineOptionsString()
 	options += this->getOptionsDebugString();
 	options += this->getOptionsOutputString();
 	options += this->getOptionsCreditsString();
+	options += this->getOptionsHardsubxString();
 
 	return options;
 }
@@ -90,9 +91,15 @@ QString CCXOptions::getCommandLineOptionsString()
 QString CCXOptions::getOptionsInputString()
 {
 	QString inputOptions;
-	inputOptions += " " + ui->cbInputType->currentData().toString();
-	inputOptions += " " + ui->cbSplitType->currentData().toString();
-	if (ui->cbLiveStream->isChecked()) {
+
+    if (ui->cbInputType->currentData().toString().length()) {
+        inputOptions += " " + ui->cbInputType->currentData().toString();
+    }
+    if (ui->cbSplitType->currentData().toString().length()) {
+        inputOptions += " " + ui->cbSplitType->currentData().toString();
+    }
+
+    if (ui->cbLiveStream->isChecked()) {
 		inputOptions += " -s";
 		if (ui->sbLiveStreamWait->value()) {
 			inputOptions += " " + QString::number(ui->sbLiveStreamWait->value());
@@ -283,6 +290,85 @@ QString CCXOptions::getOptionsCreditsString()
 	}
 
 	return creditsOptions;
+}
+
+QString CCXOptions::getOptionsHardsubxString()
+{
+	QString hardsubxOptions;
+
+    if (ui->cbHardsubx->isChecked()) {
+		hardsubxOptions += " -hardsubx";
+
+		//Subtitle color
+        if (ui->rbSubColorWhite->isChecked()) {
+			hardsubxOptions += " -subcolor white";
+        } else if (ui->rbSubColorYellow->isChecked()) {
+			hardsubxOptions += " -subcolor yellow";
+        } else if (ui->rbSubColorGreen->isChecked()) {
+			hardsubxOptions += " -subcolor green";
+        } else if (ui->rbSubColorCyan->isChecked()) {
+			hardsubxOptions += " -subcolor cyan";
+        } else if (ui->rbSubColorBlue->isChecked()) {
+			hardsubxOptions += " -subcolor blue";
+        } else if (ui->rbSubColorMagenta->isChecked()) {
+			hardsubxOptions += " -subcolor magenta";
+        } else if (ui->rbSubColorRed->isChecked()) {
+			hardsubxOptions += " -subcolor red";
+        } else if (ui->rbSubColorCustom->isChecked()) {
+			hardsubxOptions += " -subcolor " + ui->leSubColorCustom->text();
+		}
+
+		//OCR Mode
+        if (ui->rbOcrModeFrame->isChecked()) {
+			hardsubxOptions += " -ocr_mode frame";
+        } else if (ui->rbOcrModeWord->isChecked()) {
+			hardsubxOptions += " -ocr_mode word";
+        } else if (ui->rbOcrModeLetter->isChecked()) {
+			hardsubxOptions += " -ocr_mode letter";
+		}
+
+		//Detect Italics
+        if (ui->cbEnableItalicDetection->isChecked()) {
+			hardsubxOptions += " -detect_italics";
+		}
+
+		//Minimum Subtitle Duration
+		hardsubxOptions += " -min_sub_duration " + ui->leMinSubDuration->text();
+
+		//Confidence Threshold
+        if (ui->hsConfThresh->value() > 0.0 && ui->hsConfThresh->value() <= 100.0) {
+			hardsubxOptions += " -conf_thresh " + QString::number(ui->hsConfThresh->value());
+		}
+
+		//Luminance Threshold
+        if (ui->hsLumThresh->value() > 0.0 && ui->hsLumThresh->value() <= 100.0) {
+            if (ui->rbSubColorWhite->isChecked()) {
+				hardsubxOptions += " -lum_thresh " + QString::number(ui->hsLumThresh->value());
+			}
+		}
+	}
+
+	return hardsubxOptions;
+}
+
+void CCXOptions::on_cbHardsubx_toggled(bool checked)
+{
+	ui->gbSubColor->setEnabled(checked);
+	ui->gbOcrMode->setEnabled(checked);
+	ui->gbConfThresh->setEnabled(checked);
+	ui->gbLumThresh->setEnabled(checked);
+	ui->cbEnableItalicDetection->setEnabled(checked);
+	ui->gbMinSubDuration->setEnabled(checked);
+}
+
+void CCXOptions::on_hsLumThresh_valueChanged(int value)
+{
+	ui->labelLumThresh->setText(QString::number(value));
+}
+
+void CCXOptions::on_hsConfThresh_valueChanged(int value)
+{
+	ui->labelConfThresh->setText(QString::number(value));
 }
 
 void CCXOptions::on_cbLiveStream_toggled(bool checked)

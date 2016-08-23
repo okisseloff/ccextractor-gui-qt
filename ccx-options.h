@@ -54,6 +54,9 @@ private slots:
 	void on_cbDebugESFile_toggled(bool checked);
 	void on_cbDecoderRollUpLimit_toggled(bool checked);
 	void on_cbCEA708EnableServices_toggled(bool checked);
+	void on_cbHardsubx_toggled(bool checked);
+	void on_hsLumThresh_valueChanged(int value);
+	void on_hsConfThresh_valueChanged(int value);
 
 private:
 	QString getOptionsInputString();
@@ -61,6 +64,7 @@ private:
 	QString getOptionsOutputString();
 	QString getOptionsCreditsString();
 	QString getOptionsDecoderString();
+	QString getOptionsHardsubxString();
 
 private:
 	Ui::CCXOptions *ui;
