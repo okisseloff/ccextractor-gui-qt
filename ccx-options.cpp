@@ -35,6 +35,10 @@ CCXOptions::CCXOptions(QWidget *parent) :
 	ui->cbOutputType->addItem("bin (CCExtractor binary)", "-out=bin");
 	ui->cbOutputType->addItem("raw (McPoodle Broadcast)", "-out=raw");
 	ui->cbOutputType->addItem("dvdraw (McPoodle DVD)", "-out=dvdraw");
+	ui->cbOutputType->addItem("ass (SubStation Alpha)", "-out=ass");
+	ui->cbOutputType->addItem("ssa (SubStation Alpha)", "-out=ssa");
+	ui->cbOutputType->addItem("webvtt (WebVTT format)", "-out=webvtt");
+	ui->cbOutputType->addItem("report (stdout caption info)", "-out=report");
 	ui->cbOutputType->addItem("stdout (Write to stdout)", "-stdout");
 
 	this->setWindowTitle("CCExtractor options");
@@ -82,6 +86,7 @@ QString CCXOptions::getCommandLineOptionsString()
 	options += this->getOptionsInputString();
 	options += this->getOptionsDebugString();
 	options += this->getOptionsOutputString();
+	options += this->getOptionsDecoderString();
 	options += this->getOptionsCreditsString();
 	options += this->getOptionsHardsubxString();
 
@@ -92,14 +97,14 @@ QString CCXOptions::getOptionsInputString()
 {
 	QString inputOptions;
 
-    if (ui->cbInputType->currentData().toString().length()) {
-        inputOptions += " " + ui->cbInputType->currentData().toString();
-    }
-    if (ui->cbSplitType->currentData().toString().length()) {
-        inputOptions += " " + ui->cbSplitType->currentData().toString();
-    }
+	if (ui->cbInputType->currentData().toString().length()) {
+		inputOptions += " " + ui->cbInputType->currentData().toString();
+	}
+	if (ui->cbSplitType->currentData().toString().length()) {
+		inputOptions += " " + ui->cbSplitType->currentData().toString();
+	}
 
-    if (ui->cbLiveStream->isChecked()) {
+	if (ui->cbLiveStream->isChecked()) {
 		inputOptions += " -s";
 		if (ui->sbLiveStreamWait->value()) {
 			inputOptions += " " + QString::number(ui->sbLiveStreamWait->value());
@@ -150,6 +155,14 @@ QString CCXOptions::getOptionsInputString()
 	inputOptions += ui->rbTeletextForce->isChecked() ? " -teletext" : "";
 	inputOptions += ui->rbTeletextDisable->isChecked() ? " -noteletext" : "";
 
+	inputOptions += ui->rbCodecDVB->isChecked() ? " -codec dvbsub " : "";
+	inputOptions += ui->rbNocodecDVB->isChecked() ? " -nocodec dvbsub " : "";
+	inputOptions += ui->rbCodecTeletext->isChecked() ? " -codec teletext " : "";
+	inputOptions += ui->rbNocodecTeletext->isChecked() ? " -nocodec teletext " : "";
+
+	inputOptions += ui->cbWTVMPEG->isChecked() ? " -wtvmpeg2" : "";
+	inputOptions += ui->cbNoSCTE20->isChecked() ? " --noscte20" : "";
+
 	if (ui->cbTeletextPage->isChecked()) {
 		inputOptions += " -tpage " + QString::number(ui->sbTeletextPage->value());
 	}
@@ -174,6 +187,7 @@ QString CCXOptions::getOptionsDebugString()
 	debugOptions += ui->cbDebugPMT->isChecked() ? " -parsePMT" : "";
 	debugOptions += ui->cbDebugInvestigate->isChecked() ? " -investigate_packets" : "";
 	debugOptions += ui->cbDebugTeletext->isChecked() ? " -tverbose" : "";
+	debugOptions += ui->cbDebugDumpdef->isChecked() ? "-dumpdef" : "";
 
 	if (ui->cbDebugESFile->isChecked()) {
 		debugOptions += " -cf " + ui->leDebugESFile->text();
@@ -194,6 +208,7 @@ QString CCXOptions::getOptionsOutputString()
 		outputOptions += " -delay " + QString::number(ui->sbSubDelay->value());
 	}
 	outputOptions += ui->rbEncodingLatin1->isChecked() ? " -latin1" : "";
+	outputOptions += ui->rbEncodingUnicode->isChecked() ? " -unicode" : "";
 	outputOptions += ui->rbOutputNewLineLF->isChecked() ? " -lf" : "";
 	outputOptions += ui->cbOutputSentenceCap->isChecked() ? " -sc" : "";
 
@@ -219,6 +234,29 @@ QString CCXOptions::getOptionsOutputString()
 	outputOptions += ui->rbOutputTranscriptTimeDate->isChecked() ? " -datets" : "";
 	outputOptions += ui->rbOutputTranscriptTimeSSMS->isChecked() ? " -sects" : "";
 
+	//Output (2)
+
+	outputOptions += ui->rbAppendBOM->isChecked() ? " -bom" : "";
+	outputOptions += ui->rbNoBOM->isChecked() ? " -nobom" : "";
+	outputOptions += ui->cbNoHTMLEscape->isChecked() ? " --nohtmlescape" : "";
+	outputOptions += ui->cbXMLTV->isChecked() ? " -xmltv" : "";
+	outputOptions += ui->cbSEM->isChecked() ? " -sem" : "";
+
+	if (ui->cbOutputInterval->isChecked()){
+		outputOptions += " -outinterval " + ui->leOutputInterval->text();
+	}
+
+	if (ui->gbOutputTranscriptCustom->isEnabled()){
+		outputOptions += " -customtxt ";
+		outputOptions += ui->cbTranscriptStart->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptEnd->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptMode->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptChannel->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptRelative->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptXDS->isChecked() ? "1" : "0";
+		outputOptions += ui->cbTranscriptColors->isChecked() ? "1" : "0";
+	}
+
 	return outputOptions;
 }
 
@@ -231,6 +269,8 @@ QString CCXOptions::getOptionsDecoderString()
 	if (ui->cbDecoderBufferSize->isChecked()) {
 		decoderOptions += " -bs " + ui->leDecoderBufferSize->text();
 	}
+	decoderOptions += ui->cbKOC->isChecked() ? " -koc" : "";
+	decoderOptions += ui->cbForceFlush->isChecked() ? " -ff": "";
 
 	decoderOptions += ui->cbDecoderRollUpDirect->isChecked() ? " -dru" : "";
 	decoderOptions += ui->cbDecoderRollUpLineOnce->isChecked() ? " -noru" : "";
@@ -253,6 +293,8 @@ QString CCXOptions::getOptionsDecoderString()
 	}
 
 	decoderOptions += ui->cbDecoderChannel2->isChecked() ? " -cc2" : "";
+
+	decoderOptions += ui->cbCEA708EnableServices->isChecked() ? " -svc " + ui->leCEA708Services->text() : "";
 
 	return decoderOptions;
 }
@@ -296,39 +338,39 @@ QString CCXOptions::getOptionsHardsubxString()
 {
 	QString hardsubxOptions;
 
-    if (ui->cbHardsubx->isChecked()) {
+	if (ui->cbHardsubx->isChecked()) {
 		hardsubxOptions += " -hardsubx";
 
 		//Subtitle color
-        if (ui->rbSubColorWhite->isChecked()) {
+		if (ui->rbSubColorWhite->isChecked()) {
 			hardsubxOptions += " -subcolor white";
-        } else if (ui->rbSubColorYellow->isChecked()) {
+		} else if (ui->rbSubColorYellow->isChecked()) {
 			hardsubxOptions += " -subcolor yellow";
-        } else if (ui->rbSubColorGreen->isChecked()) {
+		} else if (ui->rbSubColorGreen->isChecked()) {
 			hardsubxOptions += " -subcolor green";
-        } else if (ui->rbSubColorCyan->isChecked()) {
+		} else if (ui->rbSubColorCyan->isChecked()) {
 			hardsubxOptions += " -subcolor cyan";
-        } else if (ui->rbSubColorBlue->isChecked()) {
+		} else if (ui->rbSubColorBlue->isChecked()) {
 			hardsubxOptions += " -subcolor blue";
-        } else if (ui->rbSubColorMagenta->isChecked()) {
+		} else if (ui->rbSubColorMagenta->isChecked()) {
 			hardsubxOptions += " -subcolor magenta";
-        } else if (ui->rbSubColorRed->isChecked()) {
+		} else if (ui->rbSubColorRed->isChecked()) {
 			hardsubxOptions += " -subcolor red";
-        } else if (ui->rbSubColorCustom->isChecked()) {
+		} else if (ui->rbSubColorCustom->isChecked()) {
 			hardsubxOptions += " -subcolor " + ui->leSubColorCustom->text();
 		}
 
 		//OCR Mode
-        if (ui->rbOcrModeFrame->isChecked()) {
+		if (ui->rbOcrModeFrame->isChecked()) {
 			hardsubxOptions += " -ocr_mode frame";
-        } else if (ui->rbOcrModeWord->isChecked()) {
+		} else if (ui->rbOcrModeWord->isChecked()) {
 			hardsubxOptions += " -ocr_mode word";
-        } else if (ui->rbOcrModeLetter->isChecked()) {
+		} else if (ui->rbOcrModeLetter->isChecked()) {
 			hardsubxOptions += " -ocr_mode letter";
 		}
 
 		//Detect Italics
-        if (ui->cbEnableItalicDetection->isChecked()) {
+		if (ui->cbEnableItalicDetection->isChecked()) {
 			hardsubxOptions += " -detect_italics";
 		}
 
@@ -336,13 +378,13 @@ QString CCXOptions::getOptionsHardsubxString()
 		hardsubxOptions += " -min_sub_duration " + ui->leMinSubDuration->text();
 
 		//Confidence Threshold
-        if (ui->hsConfThresh->value() > 0.0 && ui->hsConfThresh->value() <= 100.0) {
+		if (ui->hsConfThresh->value() > 0.0 && ui->hsConfThresh->value() <= 100.0) {
 			hardsubxOptions += " -conf_thresh " + QString::number(ui->hsConfThresh->value());
 		}
 
 		//Luminance Threshold
-        if (ui->hsLumThresh->value() > 0.0 && ui->hsLumThresh->value() <= 100.0) {
-            if (ui->rbSubColorWhite->isChecked()) {
+		if (ui->hsLumThresh->value() > 0.0 && ui->hsLumThresh->value() <= 100.0) {
+			if (ui->rbSubColorWhite->isChecked()) {
 				hardsubxOptions += " -lum_thresh " + QString::number(ui->hsLumThresh->value());
 			}
 		}
@@ -515,8 +557,10 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
 	if (ui->cbOutputType->currentData().toString() == "-out=txt" ||
 			ui->cbOutputType->currentData().toString() == "-out=ttxt") {
 		ui->gbOutputTranscript->setEnabled(true);
+		ui->gbOutputTranscript2->setEnabled(true);
 	} else {
 		ui->gbOutputTranscript->setEnabled(false);
+		ui->gbOutputTranscript2->setEnabled(false);
 	}
 
 	if (ui->cbOutputType->currentData().toString() == "" || //srt
@@ -572,4 +616,14 @@ void CCXOptions::on_cbDecoderRollUpLimit_toggled(bool checked)
 void CCXOptions::on_cbCEA708EnableServices_toggled(bool checked)
 {
 	ui->leCEA708Services->setEnabled(checked);
+}
+
+void CCXOptions::on_cbOutputInterval_toggled(bool checked)
+{
+	ui->leOutputInterval->setEnabled(checked);
+}
+
+void CCXOptions::on_cbOutputTranscriptCustom_toggled(bool checked)
+{
+	ui->gbOutputTranscriptCustom->setEnabled(!checked);
 }

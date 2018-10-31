@@ -48,6 +48,8 @@ private slots:
 	void on_cbOutputDefaultColor_toggled(bool checked);
 	void on_cbOutputType_currentIndexChanged(int index);
 	void on_cbOutputTrim_toggled(bool checked);
+	void on_cbOutputInterval_toggled(bool checked);
+	void on_cbOutputTranscriptCustom_toggled(bool checked);
 	void on_rbDecoderBufferDisable_toggled(bool checked);
 	void on_cbDecoderBufferSize_toggled(bool checked);
 	void on_btnDebugESFile_clicked();
