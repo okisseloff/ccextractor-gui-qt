@@ -36,6 +36,10 @@ private slots:
 	void on_cbMultiprogram_toggled(bool checked);
 	void on_rbMultiprogramNumber_toggled(bool checked);
 	void on_btnOutputPath_clicked();
+	void on_cbTranslate_toggled(bool checked);
+	void on_cbMKVLang_toggled(bool checked);
+	void on_cbOCRName_toggled(bool checked);
+	void on_buttonOCRName_clicked();
 	void on_cbTeletextPage_toggled(bool checked);
 	void on_cbEnableStartCredits_toggled(bool checked);
 	void on_cbEnableEndCredits_toggled(bool checked);
@@ -46,6 +50,15 @@ private slots:
 	void on_btnOutputCapFile_clicked();
 	void on_cbOutputCapFile_toggled(bool checked);
 	void on_cbOutputDefaultColor_toggled(bool checked);
+	void on_cbInputType_currentIndexChanged(int index);
+	void on_cbNoLeven_toggled(bool checked);
+	void on_cbMinNum_toggled(bool checked);
+	void on_cbMaxPct_toggled(bool checked);
+	void on_cbEnableSharing_toggled(bool checked);
+	void on_cbOutputFont_toggled(bool checked);
+	void on_btnOutputFont_clicked();
+	void on_cbXMLTV_toggled(bool checked);
+	void on_cbXMLTVInterval_toggled(bool checked);
 	void on_cbOutputType_currentIndexChanged(int index);
 	void on_cbOutputTrim_toggled(bool checked);
 	void on_cbOutputInterval_toggled(bool checked);

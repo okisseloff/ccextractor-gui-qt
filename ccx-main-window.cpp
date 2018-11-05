@@ -161,7 +161,7 @@ void CCXMainWindow::updateSourceOptions()
 					ui->leSourceTCPPass->setEnabled(false);
 					ui->leSourceTCPDesc->setEnabled(false);
 					sourceOptions = " -udp ";
-					sourceOptions += UDPhost.length() ? UDPhost : "";
+					sourceOptions += UDPhost.length() ? UDPhost + ":" : "";
 					sourceOptions += UDPport;
 				} else {
 					ui->leSourceTCPPort->setEnabled(true);
