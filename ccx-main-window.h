@@ -24,6 +24,9 @@ private slots:
 	void on_twSource_currentChanged(int index);
 	void on_leSourceUDPHost_textChanged(const QString &arg1);
 	void on_leSourceUDPPort_textChanged(const QString &arg1);
+	void on_leSourceTCPPort_textChanged(const QString &arg1);
+	void on_leSourceTCPPass_textChanged(const QString &arg1);
+	void on_leSourceTCPDesc_textChanged(const QString &arg1);
 	void on_treeViewFileSystem_clicked(const QModelIndex &index);
 	void on_btnFileAdd_clicked();
 	void on_btnFileRemove_clicked();
@@ -45,7 +48,7 @@ private:
 	Ui::CCXMainWindow *ui;
 
 	CCXOptions *optionsWindow;
-    CCXAbout *aboutWindow;
+	CCXAbout *aboutWindow;
 
 	QString cmdline; //Result cmd line
 	QString options; //Options set in CCXOptions Window
