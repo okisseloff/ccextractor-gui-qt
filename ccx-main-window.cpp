@@ -13,7 +13,7 @@ CCXMainWindow::CCXMainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::CCXMainWindow)
 {
-    setAcceptDrops(true);
+        setAcceptDrops(true);
 	ui->setupUi(this);
 	this->setFixedSize(this->width(), this->height());
 	optionsWindow = new CCXOptions();
@@ -303,7 +303,7 @@ void CCXMainWindow::dragEnterEvent(QDragEnterEvent *e)
 }
 void CCXMainWindow::dropEvent(QDropEvent *e)
 {
-    foreach (const QUrl &url, e->mimeData()->urls()) {
+        foreach (const QUrl &url, e->mimeData()->urls()) {
         QString droppedFileName = url.toLocalFile();
         ui->lwFiles->addItem(droppedFileName);
         this->updateSourceOptions();
