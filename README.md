@@ -7,4 +7,7 @@ Qt-based GUI for CCExtractor (https://github.com/CCExtractor/ccextractor)
 `1. Install QTCreator on your computer:   [QT Creator link](https://www.qt.io/download) with QT5.`
 
 `2. Download or clone the repository on your computer.`
+
 `3. Open .pro file with QTCreator.`
+
+![.pro file](https://ia601500.us.archive.org/9/items/makarov18042003_gmail_1/1.png)
