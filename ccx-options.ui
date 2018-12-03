@@ -42,7 +42,7 @@ QGroupBox::title {
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="tabInput">
     <attribute name="title">
@@ -105,7 +105,7 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>421</width>
-        <height>72</height>
+        <height>97</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout_5">
@@ -555,7 +555,7 @@ QGroupBox::title {
        <x>10</x>
        <y>10</y>
        <width>721</width>
-       <height>241</height>
+       <height>351</height>
       </rect>
      </property>
      <property name="title">
@@ -566,11 +566,18 @@ QGroupBox::title {
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>631</width>
-        <height>232</height>
+        <width>764</width>
+        <height>291</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QCheckBox" name="cbAutoprogram">
+         <property name="text">
+          <string>Autoprogram</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QCheckBox" name="cbMisc90090">
          <property name="text">
@@ -621,51 +628,70 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9">
-         <item>
-          <widget class="QCheckBox" name="cbScreenfuls">
-           <property name="text">
-            <string>Write</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="sbScreenfulsCount">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="maximum">
-            <number>1000000</number>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lScreenfulsSeconds">
-           <property name="text">
-            <string>screenfuls and terminate processing</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+        <widget class="QCheckBox" name="cbVidTrack">
+         <property name="text">
+          <string>Process dedicated track (if detected) instead of the video track</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
+     <widget class="QCheckBox" name="cbScreenfuls">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>49</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Write</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbScreenfulsCount">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>320</y>
+        <width>65</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>1000000</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lScreenfulsSeconds">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>290</y>
+        <width>181</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>screenfuls and terminate processing</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>320</y>
+       <width>711</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6"/>
     </widget>
    </widget>
    <widget class="QWidget" name="tabHardsubx">
@@ -1160,6 +1186,22 @@ QGroupBox::title {
       </property>
      </widget>
     </widget>
+    <widget class="QCheckBox" name="cbquant">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>290</y>
+       <width>231</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Quant</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tabDebug">
     <attribute name="title">
@@ -1319,10 +1361,17 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>701</width>
-        <height>116</height>
+        <height>351</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelOutputType">
+         <property name="text">
+          <string>      Output type:</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QComboBox" name="cbOutputType"/>
        </item>
@@ -1401,10 +1450,17 @@ QGroupBox::title {
          </item>
         </layout>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelOutputType">
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="cfOption">
          <property name="text">
-          <string>      Output type:</string>
+          <string>CF (Clean ES  without TS or PES headers)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbAppend">
+         <property name="text">
+          <string>Data append (appending data to file instead of overwriting it)</string>
          </property>
         </widget>
        </item>
@@ -1764,8 +1820,8 @@ QGroupBox::title {
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>191</width>
-        <height>120</height>
+        <width>233</width>
+        <height>122</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -1794,7 +1850,21 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbForceFlush">
+         <property name="text">
+          <string>Force FLush</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QFormLayout" name="formLayout_4">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="cbDecoderBufferSize">
+           <property name="text">
+            <string>Buffer size</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="leDecoderBufferSize">
            <property name="enabled">
@@ -1802,13 +1872,6 @@ QGroupBox::title {
            </property>
            <property name="text">
             <string>16M</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="cbDecoderBufferSize">
-           <property name="text">
-            <string>Buffer size</string>
            </property>
           </widget>
          </item>
@@ -1967,7 +2030,7 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
+       <y>320</y>
        <width>721</width>
        <height>61</height>
       </rect>
@@ -2020,8 +2083,8 @@ QGroupBox::title {
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans';&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt;&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="gbCreditsStart">
@@ -2292,9 +2355,9 @@ p, li { white-space: pre-wrap; }
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>

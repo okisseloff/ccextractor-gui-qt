@@ -6,11 +6,14 @@
 #include <QFileDialog>
 #include <QDesktopServices>
 #include <QDateTime>
+#include <QMimeData>
+#include <QDragEnterEvent>
 
 CCXMainWindow::CCXMainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::CCXMainWindow)
 {
+    setAcceptDrops(true);
 	ui->setupUi(this);
 	this->setFixedSize(this->width(), this->height());
 	optionsWindow = new CCXOptions();
@@ -125,7 +128,7 @@ void CCXMainWindow::updateSourceOptions()
 	switch (index) {
 		case 0: //files
 			{
-				sourceOptions = "";
+                sourceOptions = "";
 				for (int i = 0; i < ui->lwFiles->count(); i++) {
 					sourceOptions += " " + ui->lwFiles->item(i)->text();
 				}
@@ -133,7 +136,7 @@ void CCXMainWindow::updateSourceOptions()
 			break;
 		case 1: //filesystem
 			{
-				sourceOptions = "";
+                sourceOptions = "";
 				QModelIndexList list = ui->treeViewFileSystem->selectionModel()->selectedIndexes();
 				QFileSystemModel* model = (QFileSystemModel*)ui->treeViewFileSystem->model();
 				int row = -1;
@@ -291,4 +294,23 @@ void CCXMainWindow::on_menuBar_about_clicked()
         aboutWindow = new CCXAbout();
     }
     aboutWindow->show();
+}
+void CCXMainWindow::dragEnterEvent(QDragEnterEvent *e)
+{
+    if (e->mimeData()->hasUrls()) {
+        e->acceptProposedAction();
+    }
+}
+void CCXMainWindow::dropEvent(QDropEvent *e)
+{
+    foreach (const QUrl &url, e->mimeData()->urls()) {
+        QString droppedFileName = url.toLocalFile();
+        ui->lwFiles->addItem(droppedFileName);
+        this->updateSourceOptions();
+    }
+}
+
+void CCXMainWindow::on_CCXMainWindow_iconSizeChanged(const QSize &iconSize)
+{
+
 }

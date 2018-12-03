@@ -30,6 +30,7 @@ private slots:
 	void on_btnExtract_clicked();
 	void on_btnViewLog_clicked();
 
+
 	void on_btnOptions_clicked();
 	void on_optionsWindow_closed();
 	void on_cmdLine_updated();
@@ -37,6 +38,11 @@ private slots:
 	void on_ccextractor_log();
 	void on_menuBar_exit_clicked();
 	void on_menuBar_about_clicked();
+
+    void on_CCXMainWindow_iconSizeChanged(const QSize &iconSize);
+
+    void dropEvent(QDropEvent *e);
+    void dragEnterEvent(QDragEnterEvent *e);
 
 signals:
 	void cmdLineUpdated();

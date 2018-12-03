@@ -58,6 +58,16 @@ private slots:
 	void on_hsLumThresh_valueChanged(int value);
 	void on_hsConfThresh_valueChanged(int value);
 
+    void on_cfOption_toggled(bool checked);
+
+    void on_cbVidTrack_toggled(bool checked);
+
+    void on_cbAppend_toggled(bool checked);
+
+    void on_cbquant_toggled(bool checked);
+
+    void on_cbForceFlush_toggled(bool checked);
+
 private:
 	QString getOptionsInputString();
 	QString getOptionsDebugString();
