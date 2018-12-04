@@ -146,7 +146,7 @@ QString CCXOptions::getOptionsInputString()
 	inputOptions += ui->cbMiscHaup->isChecked() ? " -haup" : "";
 	inputOptions += ui->cbMiscMP4ForceVideo->isChecked() ? " -mp4vidtrack" : "";
 	inputOptions += ui->cbMiscNoTimeRef->isChecked() ? " -noautotimeref" : "";
-    inputOptions += ui->cbVidTrack->isChecked() ? " -mp4vidtrack" : "";
+      inputOptions += ui->cbVidTrack->isChecked() ? " -mp4vidtrack" : "";
 
 	inputOptions += ui->rbTeletextForce->isChecked() ? " -teletext" : "";
 	inputOptions += ui->rbTeletextDisable->isChecked() ? " -noteletext" : "";
@@ -189,15 +189,15 @@ QString CCXOptions::getOptionsOutputString()
 
 	outputOptions += " " + ui->cbOutputType->currentData().toString();
 	if (ui->cbOutputPath->isChecked()) {
-        if (ui->cfOption->isChecked())
-            outputOptions += " -cf " + ui->leOutputPath->text();
-        else
-            outputOptions += " -o " + ui->leOutputPath->text();
+                if (ui->cfOption->isChecked())
+                        outputOptions += " -cf " + ui->leOutputPath->text();
+                else
+                        outputOptions += " -o " + ui->leOutputPath->text();
 	}
 	if (ui->cbSubDelay->isChecked()) {
 		outputOptions += " -delay " + QString::number(ui->sbSubDelay->value());
 	}
-    outputOptions += ui->cbAppend->isChecked() ? " --append" : "";
+      outputOptions += ui->cbAppend->isChecked() ? " --append" : "";
 	outputOptions += ui->rbEncodingLatin1->isChecked() ? " -latin1" : "";
 	outputOptions += ui->rbOutputNewLineLF->isChecked() ? " -lf" : "";
 	outputOptions += ui->cbOutputSentenceCap->isChecked() ? " -sc" : "";
@@ -236,9 +236,9 @@ QString CCXOptions::getOptionsDecoderString()
 	if (ui->cbDecoderBufferSize->isChecked()) {
 		decoderOptions += " -bs " + ui->leDecoderBufferSize->text();
 	}
-    if (ui->cbForceFlush->isChecked()){
-        decoderOptions += "-ff";
-    }
+      if (ui->cbForceFlush->isChecked()){
+              decoderOptions += "-ff";
+      }
 
 	decoderOptions += ui->cbDecoderRollUpDirect->isChecked() ? " -dru" : "";
 	decoderOptions += ui->cbDecoderRollUpLineOnce->isChecked() ? " -noru" : "";
@@ -340,8 +340,8 @@ QString CCXOptions::getOptionsHardsubxString()
 			hardsubxOptions += " -detect_italics";
 		}
         if (ui->cbquant->isChecked()){
-            hardsubxOptions += " -quant";
-        }
+                      hardsubxOptions += " -quant";
+              }
 
 		//Minimum Subtitle Duration
 		hardsubxOptions += " -min_sub_duration " + ui->leMinSubDuration->text();
@@ -588,25 +588,25 @@ void CCXOptions::on_cbCEA708EnableServices_toggled(bool checked)
 
 void CCXOptions::on_cfOption_toggled(bool checked)
 {
-    ui->cfOption->setEnabled(checked);
+      ui->cfOption->setEnabled(checked);
 }
 
 void CCXOptions::on_cbVidTrack_toggled(bool checked)
 {
-    ui->cbVidTrack->setEnabled(checked);
+      ui->cbVidTrack->setEnabled(checked);
 }
 
 void CCXOptions::on_cbAppend_toggled(bool checked)
 {
-    ui->cbAppend->setEnabled(checked);
+      ui->cbAppend->setEnabled(checked);
 }
 
 void CCXOptions::on_cbquant_toggled(bool checked)
 {
-    ui->cbquant->setEnabled(checked);
+      ui->cbquant->setEnabled(checked);
 }
 
 void CCXOptions::on_cbForceFlush_toggled(bool checked)
 {
-    ui->cbForceFlush->setEnabled(checked);
+      ui->cbForceFlush->setEnabled(checked);
 }
