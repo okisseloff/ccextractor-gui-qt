@@ -57,7 +57,8 @@ private slots:
 	void on_cbHardsubx_toggled(bool checked);
 	void on_hsLumThresh_valueChanged(int value);
 	void on_hsConfThresh_valueChanged(int value);
-
+    void on_rbTeletextUseLevDist_toggled(bool checked);
+    void on_cbInputType_currentIndexChanged(int index);
 private:
 	QString getOptionsInputString();
 	QString getOptionsDebugString();

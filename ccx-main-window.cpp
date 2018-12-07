@@ -96,7 +96,7 @@ void CCXMainWindow::on_cmdLine_updated()
 QString CCXMainWindow::getBinaryCmd()
 {
 #ifdef Q_OS_WIN
-	return "ccextractor.exe";
+    return "ccextractor.exe";
 #else
 	return "./ccextractor";
 #endif
@@ -127,7 +127,7 @@ void CCXMainWindow::updateSourceOptions()
 			{
 				sourceOptions = "";
 				for (int i = 0; i < ui->lwFiles->count(); i++) {
-					sourceOptions += " " + ui->lwFiles->item(i)->text();
+                    sourceOptions += "" + ui->lwFiles->item(i)->text();
 				}
 			}
 			break;
@@ -223,8 +223,9 @@ void CCXMainWindow::on_btnExtract_clicked()
 	logFile = new QFile(logFileName);
 	logFile->open(QFile::WriteOnly);
 
-	extractionProcess->start(cmd);
-	extractionProcess->waitForFinished();
+    extractionProcess->startDetached(cmd);
+    extractionProcess->waitForFinished();
+
 	qDebug() << "done";
 
 	delete extractionProcess;

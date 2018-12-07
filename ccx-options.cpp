@@ -10,32 +10,42 @@ CCXOptions::CCXOptions(QWidget *parent) :
 	ui->setupUi(this);
 	this->setFixedSize(this->width(), this->height());
 
+
+    // list with input formats
 	ui->cbInputType->addItem("Auto", "");
+    ui->cbInputType->addItem("Transport Stream (TS)", "-in=ts");
+    ui->cbInputType->addItem("Program Stream (PS)", "-in=ps");
+    ui->cbInputType->addItem("Elementary stream (ES)", "-in=es");
+    ui->cbInputType->addItem("ASF (DVR-MS, etc.)", "-in=asf");
+    ui->cbInputType->addItem("Microsoft WTV", "-in=wtv");
+    ui->cbInputType->addItem("CCExtractor binary format", "-in=bin");
+    ui->cbInputType->addItem("McPoodle Raw", "-in=raw");
 	ui->cbInputType->addItem("MP4 (mov, m4v, etc.)", "-in=mp4");
-	ui->cbInputType->addItem("Program Stream (PS)", "-in=ps");
-	ui->cbInputType->addItem("Transport Stream (TS)", "-in=ts");
-	ui->cbInputType->addItem("BDAV MPEG 2 Transport Stream (M2TS)", "-in=m2ts");
-	ui->cbInputType->addItem("Elementary stream (ES)", "-in=es");
-	ui->cbInputType->addItem("Microsoft WTV", "-in=wtv");
-	ui->cbInputType->addItem("ASF (DVR-MS, etc.)", "-in=asf");
-	ui->cbInputType->addItem("McPoodle Raw", "-in=raw");
+    ui->cbInputType->addItem("BDAV MPEG 2 Transport Stream (M2TS)", "-in=m2ts");
+    ui->cbInputType->addItem("Matroska container and WebM", "-in=mkv");
+    ui->cbInputType->addItem("Material Exchange Format (MXF)", "-in=mxf");
 	ui->cbInputType->addItem("wtvccdump", "-in=hex");
-	ui->cbInputType->addItem("CCExtractor binary format", "-in=bin");
 
-	ui->cbSplitType->addItem("Unrelated files", "");
-	ui->cbSplitType->addItem("Parts of the same video, cut with a video tool", "-ve");
-
-	ui->cbOutputType->addItem("srt (SubRip)", "");
+    // list with output formats
+    ui->cbOutputType->addItem("srt (SubRip)", "-out=srt");
+    ui->cbOutputType->addItem("SubStation Alpha", "-out=ass");
+    ui->cbOutputType->addItem("WebVTT format", "-out=webvtt");
+    ui->cbOutputType->addItem("WebVTT format with styling", "-out=webvtt-full");
 	ui->cbOutputType->addItem("sami (Microsoft SAMI)", "-out=sami");
+    ui->cbOutputType->addItem("bin (CCExtractor binary)", "-out=bin");
+    ui->cbOutputType->addItem("raw (McPoodle Broadcast)", "-out=raw");
+    ui->cbOutputType->addItem("dvdraw (McPoodle DVD)", "-out=dvdraw");
 	ui->cbOutputType->addItem("txt (Transcript)", "-out=txt");
 	ui->cbOutputType->addItem("ttxt (Timed Transcript)", "-out=ttxt");
-	ui->cbOutputType->addItem("smptett (SMPTE Timed Text (W3C TTML))", "-out=smptett");
+    ui->cbOutputType->addItem("Grid 608 format", "-out=g608");
+    ui->cbOutputType->addItem("SMPTE Timed Text (W3C TTML) format", "-out=smptett");
+    ui->cbOutputType->addItem("spupng (XML and PNG files)", "-out=spupng");
 	ui->cbOutputType->addItem("null (No output)", "-out=null");
-	ui->cbOutputType->addItem("spupng (XML and PNG files)", "-out=spupng");
-	ui->cbOutputType->addItem("bin (CCExtractor binary)", "-out=bin");
-	ui->cbOutputType->addItem("raw (McPoodle Broadcast)", "-out=raw");
-	ui->cbOutputType->addItem("dvdraw (McPoodle DVD)", "-out=dvdraw");
-	ui->cbOutputType->addItem("stdout (Write to stdout)", "-stdout");
+    ui->cbOutputType->addItem("stdout (Write to stdout)", "-out=report");
+
+    // list with split options
+    ui->cbSplitType->addItem("Unrelated files", "");
+    ui->cbSplitType->addItem("Parts of the same video, cut with a video tool", "-ve");
 
 	this->setWindowTitle("CCExtractor options");
 }
@@ -135,10 +145,8 @@ QString CCXOptions::getOptionsInputString()
 	//Input (2)
 	inputOptions += ui->rbClockGOP->isChecked() ? " -gt" : "";
 	inputOptions += ui->rbClockPTS->isChecked() ? " -nogt" : "";
-
 	inputOptions += ui->rbMythTVForce->isChecked() ? " -myth" : "";
 	inputOptions += ui->rbMythTVDisable->isChecked() ? " -nomyth" : "";
-
 	inputOptions += ui->cbMisc90090->isChecked() ? " -90090" : "";
 	inputOptions += ui->cbMiscFixPadding->isChecked() ? " -fp" : "";
 	inputOptions += ui->cbMiscPicOrder->isChecked() ? " -poc" : "";
@@ -146,8 +154,28 @@ QString CCXOptions::getOptionsInputString()
 	inputOptions += ui->cbMiscHaup->isChecked() ? " -haup" : "";
 	inputOptions += ui->cbMiscMP4ForceVideo->isChecked() ? " -mp4vidtrack" : "";
 	inputOptions += ui->cbMiscNoTimeRef->isChecked() ? " -noautotimeref" : "";
+    inputOptions += ui->cbMiscStream->isChecked() ? " -s" : "";
+    inputOptions += ui->cbMiscWTVMPEG2->isChecked() ? " -wtvmpeg" : "";
+    inputOptions += ui->cbMiscNoscte20->isChecked() ? " --noscte20" : "";
+    inputOptions += ui->cbMiscWebvttCSS->isChecked() ? " --webvtt-create-css" : "";
+    inputOptions += ui->cbMiscDeblev->isChecked() ? " -deblev" : "";
+    inputOptions += ui->cbMiscAnvid->isChecked() ? " -anvid" : "";
 
+    // options for teletext
 	inputOptions += ui->rbTeletextForce->isChecked() ? " -teletext" : "";
+
+    // Levenstein distance
+    if (ui->rbTeletextUseLevDist->isChecked()){
+        if (ui->cbTeletextMinLevDist->isChecked() && ui->teTeletextMinLevDist->toPlainText() != ""){
+            inputOptions += " -levdistmincnt " + ui->teTeletextMinLevDist->toPlainText();
+        }
+        if (ui->cbTeletextMaxLevDist->isChecked() && ui->teTeletextMaxLevDist->toPlainText() != ""){
+            inputOptions += " -levdistmaxcnt " + ui->teTeletextMaxLevDist->toPlainText();
+        }
+    } else if (ui->rbTeletextDontUseLevDist->isChecked()){
+        inputOptions += " -nolevdist";
+    }
+
 	inputOptions += ui->rbTeletextDisable->isChecked() ? " -noteletext" : "";
 
 	if (ui->cbTeletextPage->isChecked()) {
@@ -194,8 +222,9 @@ QString CCXOptions::getOptionsOutputString()
 		outputOptions += " -delay " + QString::number(ui->sbSubDelay->value());
 	}
 	outputOptions += ui->rbEncodingLatin1->isChecked() ? " -latin1" : "";
+    outputOptions += ui->rbEncodingUnicode->isChecked() ? " -unicode" : "";
 	outputOptions += ui->rbOutputNewLineLF->isChecked() ? " -lf" : "";
-	outputOptions += ui->cbOutputSentenceCap->isChecked() ? " -sc" : "";
+    outputOptions += ui->cbOutputSentenceCap->isChecked() ? " -c" : "";
 
 	if (ui->cbOutputCapFile->isChecked()) {
 		outputOptions += " -caf " + ui->leOutputCapFile->text();
@@ -218,6 +247,38 @@ QString CCXOptions::getOptionsOutputString()
 	outputOptions += ui->cbOutputTranscriptUCLA->isChecked() ? " -UCLA" : "";
 	outputOptions += ui->rbOutputTranscriptTimeDate->isChecked() ? " -datets" : "";
 	outputOptions += ui->rbOutputTranscriptTimeSSMS->isChecked() ? " -sects" : "";
+
+    // Output (2)
+
+    // clean data
+    outputOptions += ui->cbCleanData->isChecked() ? " -cf " + this->getInfoOutputPath() : "";
+    //BOM
+    outputOptions += ui->cbDontAppendBOM->isChecked() ? " -nobom" : "";
+    // html escapes
+    outputOptions += ui->cbNoHTMLEscape->isChecked() ? " -nohtmlescape" : "";
+    // split sentence
+    outputOptions += ui->cbSentenceSplit->isChecked() ? " -sbs" : "";
+    // XDS
+    outputOptions += ui->cbSaveXDS->isChecked() ? " -xds" : "";
+
+    // pts jumps
+    if (ui->rbIgnorePTSJumps->isChecked()){
+        outputOptions += " -ignoreptsjumps";
+    } else if (ui->rbFixPTSJumps->isChecked()){
+        outputOptions += " -fixptsjumps";
+    }
+
+    outputOptions += ui->cbCreateSem->isChecked() ? " -sem" : "";
+
+    if (ui->cbDVBLanguage->isChecked() && ui->leDVBLanguage->text() != ""){
+        outputOptions += " -dvblang "+ui->leDVBLanguage->text();
+    }
+
+
+    outputOptions += ui->rbXMLTVLive->isChecked() ? " -xmltv 2" : "";
+    outputOptions += ui->rbXMLTVFull->isChecked() ? " -xmltv 1" : "";
+    outputOptions += ui->rbXMLTVBoth->isChecked() ? " -xmltv 3" : "";
+
 
 	return outputOptions;
 }
@@ -349,6 +410,37 @@ QString CCXOptions::getOptionsHardsubxString()
 	}
 
 	return hardsubxOptions;
+}
+
+void CCXOptions::on_rbTeletextUseLevDist_toggled(bool checked)
+{
+    ui->gbLevDistParams->setEnabled(checked);
+}
+
+void CCXOptions::on_cbInputType_currentIndexChanged(int index)
+{
+    if (ui->cbInputType->currentData().toString() == "-in=es" ||
+            ui->cbInputType->currentData().toString() == "" ){
+        ui->cbCleanData->setEnabled(true);
+    } else {
+        ui->cbCleanData->setEnabled(false);
+    }
+
+    if (ui->cbOutputType->currentData().toString() == "-out=srt" ||
+             ui->cbOutputType->currentData().toString() == "-out=sami" ||
+             ui->cbOutputType->currentData().toString() == "-out=vtt" ||
+             ui->cbOutputType->currentData().toString() == "") {
+        ui->cbNoHTMLEscape->setEnabled(true);
+    } else {
+        ui->cbNoHTMLEscape->setEnabled(false);
+    }
+
+    if (ui->cbInputType->currentData().toString() == "-in=ts" ||
+             ui->cbInputType->currentData().toString() == "") {
+        ui->gbXMLTVParams->setEnabled(true);
+    } else {
+        ui->gbXMLTVParams->setEnabled(false);
+    }
 }
 
 void CCXOptions::on_cbHardsubx_toggled(bool checked)
@@ -527,6 +619,22 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
 		ui->cbOutputNoTypeTags->setEnabled(false);
 		ui->cbOutputNoColorTags->setEnabled(false);
 	}
+
+    if (ui->cbOutputType->currentData().toString() == "-out=srt" ||
+             ui->cbOutputType->currentData().toString() == "-out=sami" ||
+             ui->cbOutputType->currentData().toString() == "-out=vtt" ||
+             ui->cbOutputType->currentData().toString() == "") {
+        ui->cbNoHTMLEscape->setEnabled(true);
+    } else {
+        ui->cbNoHTMLEscape->setEnabled(false);
+    }
+
+    if (ui->cbOutputType->currentData().toString() == "-out=ttxt" ||
+             ui->cbOutputType->currentData().toString() == "") {
+        ui->cbSaveXDS->setEnabled(true);
+    } else {
+        ui->cbSaveXDS->setEnabled(false);
+    }
 
 	ui->cbOutputAutodash->setEnabled(ui->cbOutputType->currentData().toString() == "" && //srt
 									 ui->cbOutputTrim->isChecked());

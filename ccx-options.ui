@@ -36,13 +36,13 @@ QGroupBox::title {
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>10</y>
+     <y>0</y>
      <width>741</width>
-     <height>431</height>
+     <height>441</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="tabInput">
     <attribute name="title">
@@ -236,6 +236,9 @@ QGroupBox::title {
       </property>
       <property name="text">
        <string>GOP</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QRadioButton" name="rbClockPTS">
@@ -554,8 +557,8 @@ QGroupBox::title {
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>721</width>
-       <height>241</height>
+       <width>491</width>
+       <height>391</height>
       </rect>
      </property>
      <property name="title">
@@ -566,8 +569,8 @@ QGroupBox::title {
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>631</width>
-        <height>232</height>
+        <width>471</width>
+        <height>378</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -621,6 +624,61 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbMiscStream">
+         <property name="text">
+          <string>Process a live stream</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscWTVMPEG2">
+         <property name="text">
+          <string>Read the captions from the MPEG2 video strean rather than the captions stream in WTV</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscNoscte20">
+         <property name="text">
+          <string>Ignore SCTE-20 data if present</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscWebvttCSS">
+         <property name="text">
+          <string>Create a separate file for CSS instead of inline</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscDeblev">
+         <property name="text">
+          <string>Enable debug so the calculated distance for each two strings is displayed</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbMiscAnvid">
+         <property name="text">
+          <string>Analyze the video stream even if it's not used for subtitles</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
           <widget class="QCheckBox" name="cbScreenfuls">
@@ -649,23 +707,113 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
         </layout>
        </item>
       </layout>
      </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbLevDistParams">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>50</y>
+       <width>221</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Parameters for Levenstein distance</string>
+     </property>
+     <widget class="QTextEdit" name="teTeletextMinLevDist">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>20</y>
+        <width>105</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>110</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="teTeletextMaxLevDist">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>51</y>
+        <width>105</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>110</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTeletextMinLevDist">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>20</y>
+        <width>85</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>min Lev. dist</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTeletextMaxLevDist">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>51</y>
+        <width>89</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>max Lev. dist</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QRadioButton" name="rbTeletextUseLevDist">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>30</y>
+       <width>211</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Correct typos with Levenstein distance</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rbTeletextDontUseLevDist">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>10</y>
+       <width>211</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Do not use Levenstein Distance</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tabHardsubx">
@@ -701,6 +849,9 @@ QGroupBox::title {
       <string>Subtitle Color</string>
      </property>
      <widget class="QRadioButton" name="rbSubColorWhite">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1443,13 +1594,26 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>40</y>
         <width>107</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>Latin &amp;1</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbEncodingUnicode">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unicode</string>
       </property>
      </widget>
     </widget>
@@ -1562,98 +1726,260 @@ QGroupBox::title {
       <rect>
        <x>10</x>
        <y>220</y>
-       <width>361</width>
-       <height>171</height>
+       <width>721</width>
+       <height>181</height>
       </rect>
      </property>
      <property name="title">
       <string>Color and Style</string>
      </property>
-     <widget class="QCheckBox" name="cbOutputNoTypeTags">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>80</y>
-        <width>331</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Don't add typesetting tags (bold, italic, etc)</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="cbOutputNoColorTags">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>171</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Don't add color tags</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="cbOutputTrim">
+     <widget class="QWidget" name="verticalLayoutWidget_6">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>101</width>
-        <height>20</height>
+        <width>299</width>
+        <height>151</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Trim lines</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QCheckBox" name="cbOutputTrim">
+         <property name="text">
+          <string>Trim lines</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbOutputAutodash">
+         <property name="text">
+          <string>Attempt to guess phrase start and put dash</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbOutputNoTypeTags">
+         <property name="text">
+          <string>Don't add typesetting tags (bold, italic, etc)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbCleanData">
+         <property name="text">
+          <string>No TS or PES headers</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbOutputNoColorTags">
+         <property name="text">
+          <string>Don't add color tags</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbNoHTMLEscape">
+         <property name="text">
+          <string>For .srt/.sami/.vtt, do not covert html unsafe characters</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <widget class="QCheckBox" name="cbOutputDefaultColor">
+           <property name="text">
+            <string>Default color (RRGGBB) #</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leOutputDefaultColor">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
-     <widget class="QCheckBox" name="cbOutputDefaultColor">
+     <widget class="QWidget" name="gridLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>20</y>
+        <width>401</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="cbSentenceSplit">
+         <property name="text">
+          <string>Split output text so each frame contains a complete sentence</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbCreateSem">
+         <property name="text">
+          <string>Create a .sem file for each output file that is open</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="cbSaveXDS">
+         <property name="text">
+          <string>Save XDS information to the output file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="cbDontAppendBOM">
+         <property name="text">
+          <string> Do not append a BOM (May cause problems on Windows)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <item>
+          <widget class="QCheckBox" name="cbDVBLanguage">
+           <property name="text">
+            <string>Specified language for DVB subtitles</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leDVBLanguage">
+           <property name="text">
+            <string>eng</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Output (2)</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>270</y>
+       <width>121</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>PTS Jumps</string>
+     </property>
+     <widget class="QRadioButton" name="rbIgnorePTSJumps">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>140</y>
-        <width>191</width>
-        <height>20</height>
+        <y>20</y>
+        <width>111</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>Default color (RRGGBB) #</string>
+       <string>Ignore PTS jumps</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="leOutputDefaultColor">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>140</y>
-        <width>81</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="cbOutputAutodash">
+     <widget class="QRadioButton" name="rbFixPTSJumps">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
-        <width>321</width>
-        <height>20</height>
+        <y>40</y>
+        <width>91</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>Attempt to guess phrase start and put dash</string>
+       <string>Fix PTS Jumps</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbXMLTVParams">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>251</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>XMLTV</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>231</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Produce a XMLTV file
+containing the EPG data from the source TS file</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbXMLTVLive">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>71</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>live output</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbXMLTVFull">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>40</y>
+        <width>71</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>full output</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbXMLTVBoth">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>40</y>
+        <width>51</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>both</string>
       </property>
      </widget>
     </widget>
     <widget class="QGroupBox" name="gbOutputTranscript">
      <property name="geometry">
       <rect>
-       <x>380</x>
-       <y>220</y>
-       <width>351</width>
+       <x>10</x>
+       <y>10</y>
+       <width>321</width>
        <height>171</height>
       </rect>
      </property>
@@ -1692,7 +2018,7 @@ QGroupBox::title {
      <widget class="QLineEdit" name="leOutputTranscriptUnixRef">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>160</x>
         <y>20</y>
         <width>151</width>
         <height>25</height>
@@ -2020,8 +2346,8 @@ QGroupBox::title {
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans';&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt;&quot;&gt;CCExtractor can _try_ to add a custom message (for credits for example) at the start and end of the file, looking for a window where there are no captions. If there is no such window, then no text will be added. The start window must be between the times given and must have enough time to display the message for at least the specified time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="gbCreditsStart">
@@ -2292,9 +2618,9 @@ p, li { white-space: pre-wrap; }
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;1. All connditions must be met, otherwise no text will be added.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans'; font-size:10pt; color:#ae2e1a;&quot;&gt;2. If you plan to distribute the output files non-comercially, please consider leaving a reference to CCExtractor&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
