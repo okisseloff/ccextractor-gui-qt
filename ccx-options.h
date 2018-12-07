@@ -57,8 +57,11 @@ private slots:
 	void on_cbHardsubx_toggled(bool checked);
 	void on_hsLumThresh_valueChanged(int value);
 	void on_hsConfThresh_valueChanged(int value);
-    void on_rbTeletextUseLevDist_toggled(bool checked);
+    void on_cbTeletextUseLevDist_toggled(bool checked);
     void on_cbInputType_currentIndexChanged(int index);
+    void on_cbAnotherLanguage_toggled(bool checked);
+    void on_cbDVBLanguage_toggled(bool checked);
+    void on_cbCustomFont_toggled(bool checked);
 private:
 	QString getOptionsInputString();
 	QString getOptionsDebugString();

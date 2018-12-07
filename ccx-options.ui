@@ -714,12 +714,12 @@ QGroupBox::title {
     </widget>
     <widget class="QGroupBox" name="gbLevDistParams">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>50</y>
+       <y>30</y>
        <width>221</width>
        <height>81</height>
       </rect>
@@ -789,30 +789,20 @@ QGroupBox::title {
       </property>
      </widget>
     </widget>
-    <widget class="QRadioButton" name="rbTeletextUseLevDist">
+    <widget class="QCheckBox" name="cbTeletextUseLevDist">
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>30</y>
-       <width>211</width>
+       <y>10</y>
+       <width>221</width>
        <height>19</height>
       </rect>
      </property>
      <property name="text">
       <string>Correct typos with Levenstein distance</string>
      </property>
-    </widget>
-    <widget class="QRadioButton" name="rbTeletextDontUseLevDist">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>10</y>
-       <width>211</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Do not use Levenstein Distance</string>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -1458,7 +1448,7 @@ QGroupBox::title {
        <x>10</x>
        <y>0</y>
        <width>721</width>
-       <height>121</height>
+       <height>111</height>
       </rect>
      </property>
      <property name="title">
@@ -1470,7 +1460,7 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>701</width>
-        <height>116</height>
+        <height>81</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout_2">
@@ -1566,7 +1556,7 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>130</y>
+       <y>120</y>
        <width>121</width>
        <height>81</height>
       </rect>
@@ -1621,7 +1611,7 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>130</y>
+       <y>120</y>
        <width>191</width>
        <height>80</height>
       </rect>
@@ -1663,7 +1653,7 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>130</y>
+       <y>120</y>
        <width>391</width>
        <height>81</height>
       </rect>
@@ -1725,10 +1715,16 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>220</y>
-       <width>721</width>
-       <height>181</height>
+       <y>200</y>
+       <width>325</width>
+       <height>201</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>325</width>
+       <height>0</height>
+      </size>
      </property>
      <property name="title">
       <string>Color and Style</string>
@@ -1738,8 +1734,8 @@ QGroupBox::title {
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>299</width>
-        <height>151</height>
+        <width>321</width>
+        <height>174</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1765,16 +1761,9 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="cbCleanData">
+        <widget class="QCheckBox" name="cbSentenceSplit">
          <property name="text">
-          <string>No TS or PES headers</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cbOutputNoColorTags">
-         <property name="text">
-          <string>Don't add color tags</string>
+          <string>Split output text so each frame contains a complete sentence</string>
          </property>
         </widget>
        </item>
@@ -1782,6 +1771,13 @@ QGroupBox::title {
         <widget class="QCheckBox" name="cbNoHTMLEscape">
          <property name="text">
           <string>For .srt/.sami/.vtt, do not covert html unsafe characters</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbOutputNoColorTags">
+         <property name="text">
+          <string>Don't add color tags</string>
          </property>
         </widget>
        </item>
@@ -1799,30 +1795,55 @@ QGroupBox::title {
            <property name="enabled">
             <bool>false</bool>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
       </layout>
      </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>200</y>
+       <width>391</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Another options for style of output file</string>
+     </property>
      <widget class="QWidget" name="gridLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>10</x>
         <y>20</y>
-        <width>401</width>
-        <height>151</height>
+        <width>376</width>
+        <height>181</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="cbSentenceSplit">
-         <property name="text">
-          <string>Split output text so each frame contains a complete sentence</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QCheckBox" name="cbCreateSem">
          <property name="text">
           <string>Create a .sem file for each output file that is open</string>
@@ -1839,11 +1860,11 @@ QGroupBox::title {
        <item row="1" column="1">
         <widget class="QCheckBox" name="cbDontAppendBOM">
          <property name="text">
-          <string> Do not append a BOM (May cause problems on Windows)</string>
+          <string>Do not append a BOM (May cause problems on Windows)</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="7" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_18">
          <item>
           <widget class="QCheckBox" name="cbDVBLanguage">
@@ -1854,12 +1875,76 @@ QGroupBox::title {
          </item>
          <item>
           <widget class="QLineEdit" name="leDVBLanguage">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
-            <string>eng</string>
+            <string/>
            </property>
           </widget>
          </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>210</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
+       </item>
+       <item row="8" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <widget class="QCheckBox" name="cbAnotherLanguage">
+           <property name="text">
+            <string>OCR a captions one lang with the data of another lang</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leAnotherLanguage">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="cbDVBDontUseOCR">
+         <property name="text">
+          <string>When processing DVB don't use the OCR to write comments</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="cbCleanData">
+         <property name="text">
+          <string>No TS or PES headers</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1872,10 +1957,10 @@ QGroupBox::title {
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>270</y>
+       <x>470</x>
+       <y>100</y>
        <width>121</width>
-       <height>71</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="title">
@@ -1898,7 +1983,7 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>50</y>
         <width>91</width>
         <height>19</height>
        </rect>
@@ -1914,7 +1999,7 @@ QGroupBox::title {
        <x>10</x>
        <y>190</y>
        <width>251</width>
-       <height>71</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="title">
@@ -1938,7 +2023,7 @@ containing the EPG data from the source TS file</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>50</y>
         <width>71</width>
         <height>19</height>
        </rect>
@@ -1951,7 +2036,7 @@ containing the EPG data from the source TS file</string>
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>40</y>
+        <y>50</y>
         <width>71</width>
         <height>19</height>
        </rect>
@@ -1964,7 +2049,7 @@ containing the EPG data from the source TS file</string>
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>40</y>
+        <y>50</y>
         <width>51</width>
         <height>19</height>
        </rect>
@@ -2068,6 +2153,173 @@ containing the EPG data from the source TS file</string>
       </property>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="gbQuant">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>10</y>
+       <width>391</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Way of quantizing</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>341</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>How to quantize the bitmap before passing it to tesseract for OCR'ing</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbQuantNo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>121</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Don't quantize at all</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbQuantReduceDistinctColor">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reduce distinct color count in image for faster results</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbQuantCCX">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>30</y>
+        <width>241</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use CCExtractor's internal function (default)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbOEM">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>100</y>
+       <width>121</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>OEM mode for Tesseract</string>
+     </property>
+     <widget class="QRadioButton" name="rbOEMDefault">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Default</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOEMLSTM">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LSTM</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rbOEMBoth">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Both</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>190</y>
+       <width>461</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Custom font</string>
+     </property>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>431</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Give the full path of the font that is to be used when generating SPUPNG files.
+If not specified, you need to have the default font installed</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leCustomFont">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>53</y>
+        <width>351</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbCustomFont">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>53</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Path to font:</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="tabDecoder">
     <attribute name="title">
@@ -2076,10 +2328,10 @@ containing the EPG data from the source TS file</string>
     <widget class="QGroupBox" name="gbDecoderBuffering">
      <property name="geometry">
       <rect>
-       <x>520</x>
+       <x>510</x>
        <y>10</y>
-       <width>211</width>
-       <height>141</height>
+       <width>221</width>
+       <height>171</height>
       </rect>
      </property>
      <property name="title">
@@ -2090,8 +2342,8 @@ containing the EPG data from the source TS file</string>
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>191</width>
-        <height>120</height>
+        <width>201</width>
+        <height>141</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -2116,6 +2368,13 @@ containing the EPG data from the source TS file</string>
         <widget class="QRadioButton" name="rbDecoderBufferDisable">
          <property name="text">
           <string>Disable input buffering</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbBufferKOC">
+         <property name="text">
+          <string>Keep-output-close</string>
          </property>
         </widget>
        </item>
@@ -2148,8 +2407,8 @@ containing the EPG data from the source TS file</string>
       <rect>
        <x>240</x>
        <y>10</y>
-       <width>271</width>
-       <height>141</height>
+       <width>261</width>
+       <height>171</height>
       </rect>
      </property>
      <property name="title">
@@ -2158,10 +2417,10 @@ containing the EPG data from the source TS file</string>
      <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>20</y>
-        <width>223</width>
-        <height>81</height>
+        <width>221</width>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2191,8 +2450,8 @@ containing the EPG data from the source TS file</string>
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>100</y>
+        <x>20</x>
+        <y>130</y>
         <width>221</width>
         <height>31</height>
        </rect>
@@ -2240,7 +2499,7 @@ containing the EPG data from the source TS file</string>
        <x>10</x>
        <y>10</y>
        <width>221</width>
-       <height>141</height>
+       <height>111</height>
       </rect>
      </property>
      <property name="title">
@@ -2293,7 +2552,7 @@ containing the EPG data from the source TS file</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
+       <y>190</y>
        <width>721</width>
        <height>61</height>
       </rect>
@@ -2326,6 +2585,33 @@ containing the EPG data from the source TS file</string>
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Flushing buffer</string>
+     </property>
+     <widget class="QCheckBox" name="cbBufferFlush">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>13</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Flush the file buffer
+whenever content is written</string>
+      </property>
      </widget>
     </widget>
    </widget>

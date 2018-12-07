@@ -94,6 +94,7 @@ QString CCXOptions::getCommandLineOptionsString()
 	options += this->getOptionsOutputString();
 	options += this->getOptionsCreditsString();
 	options += this->getOptionsHardsubxString();
+    options += this->getOptionsDecoderString();
 
 	return options;
 }
@@ -165,14 +166,14 @@ QString CCXOptions::getOptionsInputString()
 	inputOptions += ui->rbTeletextForce->isChecked() ? " -teletext" : "";
 
     // Levenstein distance
-    if (ui->rbTeletextUseLevDist->isChecked()){
+    if (ui->cbTeletextUseLevDist->isChecked() && !ui->rbTeletextDisable->isChecked()){
         if (ui->cbTeletextMinLevDist->isChecked() && ui->teTeletextMinLevDist->toPlainText() != ""){
             inputOptions += " -levdistmincnt " + ui->teTeletextMinLevDist->toPlainText();
         }
         if (ui->cbTeletextMaxLevDist->isChecked() && ui->teTeletextMaxLevDist->toPlainText() != ""){
             inputOptions += " -levdistmaxcnt " + ui->teTeletextMaxLevDist->toPlainText();
         }
-    } else if (ui->rbTeletextDontUseLevDist->isChecked()){
+    } else {
         inputOptions += " -nolevdist";
     }
 
@@ -260,26 +261,39 @@ QString CCXOptions::getOptionsOutputString()
     outputOptions += ui->cbSentenceSplit->isChecked() ? " -sbs" : "";
     // XDS
     outputOptions += ui->cbSaveXDS->isChecked() ? " -xds" : "";
-
     // pts jumps
     if (ui->rbIgnorePTSJumps->isChecked()){
         outputOptions += " -ignoreptsjumps";
     } else if (ui->rbFixPTSJumps->isChecked()){
         outputOptions += " -fixptsjumps";
     }
-
+    // SEM
     outputOptions += ui->cbCreateSem->isChecked() ? " -sem" : "";
-
+    // languages
     if (ui->cbDVBLanguage->isChecked() && ui->leDVBLanguage->text() != ""){
         outputOptions += " -dvblang "+ui->leDVBLanguage->text();
     }
-
-
+    if (ui->cbAnotherLanguage->isChecked() && ui->leAnotherLanguage->text() != ""){
+        outputOptions += " -ocrlang "+ui->leAnotherLanguage->text();
+    }
+    // XMLTV options
     outputOptions += ui->rbXMLTVLive->isChecked() ? " -xmltv 2" : "";
     outputOptions += ui->rbXMLTVFull->isChecked() ? " -xmltv 1" : "";
     outputOptions += ui->rbXMLTVBoth->isChecked() ? " -xmltv 3" : "";
-
-
+    // quantizing
+    outputOptions += ui->rbQuantNo->isChecked() ? " -quant 0" : "";
+    outputOptions += ui->rbQuantCCX->isChecked() ? " -quant 1" : "";
+    outputOptions += ui->rbQuantReduceDistinctColor->isChecked() ? " -quant 2" : "";
+    // OEM
+    outputOptions += ui->rbOEMDefault->isChecked() ? " -oem 0" : "";
+    outputOptions += ui->rbOEMLSTM->isChecked() ? " -oem 1" : "";
+    outputOptions += ui->rbOEMBoth->isChecked() ? " -oem 2" : "";
+    // DVB & OCR
+    outputOptions += ui->cbDVBDontUseOCR->isChecked() ? " -nospupngocr" : "";
+    // Cutom fonts
+    if (ui->cbCustomFont->isChecked() && ui->leCustomFont->text() != ""){
+        outputOptions += " -font "+ui->leCustomFont->text();
+    }
 	return outputOptions;
 }
 
@@ -315,6 +329,10 @@ QString CCXOptions::getOptionsDecoderString()
 
 	decoderOptions += ui->cbDecoderChannel2->isChecked() ? " -cc2" : "";
 
+    // Force flush
+    decoderOptions += ui->cbBufferFlush->isChecked() ? " -nospupngocr" : "";
+    // KOC
+    decoderOptions += ui->cbBufferKOC->isChecked() ? " -koc" : "";
 	return decoderOptions;
 }
 
@@ -412,7 +430,22 @@ QString CCXOptions::getOptionsHardsubxString()
 	return hardsubxOptions;
 }
 
-void CCXOptions::on_rbTeletextUseLevDist_toggled(bool checked)
+void CCXOptions::on_cbAnotherLanguage_toggled(bool checked)
+{
+    ui->leAnotherLanguage->setEnabled(checked);
+}
+
+void CCXOptions::on_cbCustomFont_toggled(bool checked)
+{
+    ui->leCustomFont->setEnabled(checked);
+}
+
+void CCXOptions::on_cbDVBLanguage_toggled(bool checked)
+{
+    ui->leDVBLanguage->setEnabled(checked);
+}
+
+void CCXOptions::on_cbTeletextUseLevDist_toggled(bool checked)
 {
     ui->gbLevDistParams->setEnabled(checked);
 }
@@ -530,7 +563,7 @@ void CCXOptions::on_btnOutputPath_clicked()
 
 void CCXOptions::on_cbTeletextPage_toggled(bool checked)
 {
-	ui->sbTeletextPage->setEnabled(checked);
+    ui->sbTeletextPage->setEnabled(checked);
 }
 
 void CCXOptions::on_cbEnableStartCredits_toggled(bool checked)
@@ -636,6 +669,12 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
         ui->cbSaveXDS->setEnabled(false);
     }
 
+    if (ui->cbOutputType->currentData().toString() == "-out=spupng" ||
+            ui->cbOutputType->currentData().toString() == "") {
+        ui->cbDVBDontUseOCR->setEnabled(true);
+    } else {
+        ui->cbDVBDontUseOCR->setEnabled(false);
+    }
 	ui->cbOutputAutodash->setEnabled(ui->cbOutputType->currentData().toString() == "" && //srt
 									 ui->cbOutputTrim->isChecked());
 }
