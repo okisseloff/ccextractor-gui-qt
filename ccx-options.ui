@@ -42,7 +42,7 @@ QGroupBox::title {
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tabInput">
     <attribute name="title">
@@ -803,17 +803,17 @@ QGroupBox::title {
        <x>510</x>
        <y>120</y>
        <width>221</width>
-       <height>281</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="title">
       <string>Miscellaneous 2</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>230</y>
+        <y>20</y>
         <width>201</width>
         <height>31</height>
        </rect>
@@ -845,7 +845,7 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>260</y>
+        <y>50</y>
         <width>181</width>
         <height>21</height>
        </rect>
