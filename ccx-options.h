@@ -62,6 +62,8 @@ private slots:
     void on_cbAnotherLanguage_toggled(bool checked);
     void on_cbDVBLanguage_toggled(bool checked);
     void on_cbCustomFont_toggled(bool checked);
+    void on_cbCustomTTXTFile_toggled(bool checked);
+    void on_cbTranslate_toggled(bool checked);
 private:
 	QString getOptionsInputString();
 	QString getOptionsDebugString();

@@ -27,6 +27,7 @@ CCXOptions::CCXOptions(QWidget *parent) :
 	ui->cbInputType->addItem("wtvccdump", "-in=hex");
 
     // list with output formats
+    ui->cbOutputType->addItem("Auto", "");
     ui->cbOutputType->addItem("srt (SubRip)", "-out=srt");
     ui->cbOutputType->addItem("SubStation Alpha", "-out=ass");
     ui->cbOutputType->addItem("WebVTT format", "-out=webvtt");
@@ -183,6 +184,12 @@ QString CCXOptions::getOptionsInputString()
 		inputOptions += " -tpage " + QString::number(ui->sbTeletextPage->value());
 	}
 
+    // ES codecs
+    inputOptions += ui->rbESDVB->isChecked() ? " -codec dvbsub" : "";
+    inputOptions += ui->rbESIgnoreDVB->isChecked() ? " -nocodec dvbsub" : "";
+    inputOptions += ui->rbTeletextCodec->isChecked() ? " -codec teletext" : "";
+    inputOptions += ui->rbTeletextIgnoreCodec->isChecked() ? " -nocodec teletext" : "";
+
 	return inputOptions;
 }
 
@@ -203,10 +210,11 @@ QString CCXOptions::getOptionsDebugString()
 	debugOptions += ui->cbDebugPMT->isChecked() ? " -parsePMT" : "";
 	debugOptions += ui->cbDebugInvestigate->isChecked() ? " -investigate_packets" : "";
 	debugOptions += ui->cbDebugTeletext->isChecked() ? " -tverbose" : "";
-
+    debugOptions += ui->cbTSDumpDefective->isChecked() ? " -dumpdef" : "";
 	if (ui->cbDebugESFile->isChecked()) {
 		debugOptions += " -cf " + ui->leDebugESFile->text();
 	}
+
 
 	return debugOptions;
 }
@@ -294,6 +302,27 @@ QString CCXOptions::getOptionsOutputString()
     if (ui->cbCustomFont->isChecked() && ui->leCustomFont->text() != ""){
         outputOptions += " -font "+ui->leCustomFont->text();
     }
+    // Custom TTXT output file
+    QString customOutTTXT[7] = {"0000000"};
+    customOutTTXT[0] = ui->cbTTXTStartTime->isChecked() ? "1": "0";
+    customOutTTXT[1] = ui->cbTTXTEndTime->isChecked() ? "1": "0";
+    customOutTTXT[2] = ui->cbTTXTCaptionMode->isChecked() ? "1": "0";
+    customOutTTXT[3] = ui->cbTTXTCaptionChannel->isChecked() ? "1": "0";
+    customOutTTXT[4] = ui->cbTTXTRelativeTimestamp->isChecked() ? "1": "0";
+    customOutTTXT[5] = ui->cbTTXTXDSInfo->isChecked() ? "1": "0";
+    customOutTTXT[6] = ui->cbTTXTUseColors->isChecked() ? "1": "0";
+    if (ui->cbCustomTTXTFile->isChecked()){
+        outputOptions += " -customtxt "+customOutTTXT[0]+
+                customOutTTXT[1]+customOutTTXT[2]+
+                customOutTTXT[3]+customOutTTXT[4]+
+                customOutTTXT[5]+customOutTTXT[6];
+    }
+
+    //translate
+    if (ui->cbTranslate->isChecked() && ui->leAPITranslate->text() != "" && ui->leTranslate->text() != ""){
+        outputOptions += " -translate "+ui->leTranslate->text();
+    }
+
 	return outputOptions;
 }
 
@@ -425,9 +454,21 @@ QString CCXOptions::getOptionsHardsubxString()
 				hardsubxOptions += " -lum_thresh " + QString::number(ui->hsLumThresh->value());
 			}
 		}
+        if (ui->hsTicker->isChecked()) {
+            hardsubxOptions += " -tickertext";
+        }
 	}
 
 	return hardsubxOptions;
+}
+
+void CCXOptions::on_cbTranslate_toggled(bool checked)
+{
+    ui->gbTranslate->setEnabled(checked);
+}
+void CCXOptions::on_cbCustomTTXTFile_toggled(bool checked)
+{
+    ui->gbCustomTTXTFileOutput->setEnabled(checked);
 }
 
 void CCXOptions::on_cbAnotherLanguage_toggled(bool checked)
@@ -455,24 +496,25 @@ void CCXOptions::on_cbInputType_currentIndexChanged(int index)
     if (ui->cbInputType->currentData().toString() == "-in=es" ||
             ui->cbInputType->currentData().toString() == "" ){
         ui->cbCleanData->setEnabled(true);
+        ui->rbESDVB->setEnabled(true);
+        ui->rbTeletextCodec->setEnabled(true);
+        ui->rbESIgnoreDVB->setEnabled(true);
+        ui->rbTeletextIgnoreCodec->setEnabled(true);
     } else {
         ui->cbCleanData->setEnabled(false);
-    }
-
-    if (ui->cbOutputType->currentData().toString() == "-out=srt" ||
-             ui->cbOutputType->currentData().toString() == "-out=sami" ||
-             ui->cbOutputType->currentData().toString() == "-out=vtt" ||
-             ui->cbOutputType->currentData().toString() == "") {
-        ui->cbNoHTMLEscape->setEnabled(true);
-    } else {
-        ui->cbNoHTMLEscape->setEnabled(false);
+        ui->rbESDVB->setEnabled(false);
+        ui->rbTeletextCodec->setEnabled(false);
+        ui->rbESIgnoreDVB->setEnabled(false);
+        ui->rbTeletextIgnoreCodec->setEnabled(false);
     }
 
     if (ui->cbInputType->currentData().toString() == "-in=ts" ||
              ui->cbInputType->currentData().toString() == "") {
         ui->gbXMLTVParams->setEnabled(true);
+        ui->cbTSDumpDefective->setEnabled(true);
     } else {
         ui->gbXMLTVParams->setEnabled(false);
+        ui->cbTSDumpDefective->setEnabled(false);
     }
 }
 
@@ -484,6 +526,7 @@ void CCXOptions::on_cbHardsubx_toggled(bool checked)
 	ui->gbLumThresh->setEnabled(checked);
 	ui->cbEnableItalicDetection->setEnabled(checked);
 	ui->gbMinSubDuration->setEnabled(checked);
+    ui->hsTicker->setEnabled(checked);
 }
 
 void CCXOptions::on_hsLumThresh_valueChanged(int value)
@@ -662,15 +705,24 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
         ui->cbNoHTMLEscape->setEnabled(false);
     }
 
-    if (ui->cbOutputType->currentData().toString() == "-out=ttxt" ||
-             ui->cbOutputType->currentData().toString() == "") {
+    if (ui->cbOutputType->currentData().toString() == "-out=ttxt") {
         ui->cbSaveXDS->setEnabled(true);
+        ui->cbCustomTTXTFile->setEnabled(true);
     } else {
+        ui->cbTTXTStartTime->setChecked(false);
+        ui->cbTTXTEndTime->setChecked(false);
+        ui->cbTTXTCaptionMode->setChecked(false);
+        ui->cbTTXTCaptionChannel->setChecked(false);
+        ui->cbTTXTRelativeTimestamp->setChecked(false);
+        ui->cbTTXTXDSInfo->setChecked(false);
+        ui->cbTTXTUseColors->setChecked(false);
         ui->cbSaveXDS->setEnabled(false);
+        ui->gbCustomTTXTFileOutput->setEnabled(false);
+        ui->cbCustomTTXTFile->setEnabled(false);
+        ui->cbCustomTTXTFile->setChecked(false);
     }
 
-    if (ui->cbOutputType->currentData().toString() == "-out=spupng" ||
-            ui->cbOutputType->currentData().toString() == "") {
+    if (ui->cbOutputType->currentData().toString() == "-out=spupng") {
         ui->cbDVBDontUseOCR->setEnabled(true);
     } else {
         ui->cbDVBDontUseOCR->setEnabled(false);

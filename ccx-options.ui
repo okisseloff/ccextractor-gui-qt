@@ -42,7 +42,7 @@ QGroupBox::title {
     </rect>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tabInput">
     <attribute name="title">
@@ -556,9 +556,9 @@ QGroupBox::title {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>7</y>
        <width>491</width>
-       <height>391</height>
+       <height>395</height>
       </rect>
      </property>
      <property name="title">
@@ -570,7 +570,7 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>471</width>
-        <height>378</height>
+        <height>375</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -652,6 +652,42 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_21">
+         <item>
+          <widget class="QRadioButton" name="rbTeletextCodec">
+           <property name="text">
+            <string>Select the teletext subtitle from ES</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbTeletextIgnoreCodec">
+           <property name="text">
+            <string>Ignore teletext subtitle</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_20">
+         <item>
+          <widget class="QRadioButton" name="rbESDVB">
+           <property name="text">
+            <string>Select the DVB subtitle from ES</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbESIgnoreDVB">
+           <property name="text">
+            <string>Ignore DVB subtitle</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QCheckBox" name="cbMiscDeblev">
          <property name="text">
           <string>Enable debug so the calculated distance for each two strings is displayed</string>
@@ -664,50 +700,6 @@ QGroupBox::title {
           <string>Analyze the video stream even if it's not used for subtitles</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9">
-         <item>
-          <widget class="QCheckBox" name="cbScreenfuls">
-           <property name="text">
-            <string>Write</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="sbScreenfulsCount">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="maximum">
-            <number>1000000</number>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lScreenfulsSeconds">
-           <property name="text">
-            <string>screenfuls and terminate processing</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -804,6 +796,64 @@ QGroupBox::title {
      <property name="checked">
       <bool>true</bool>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>120</y>
+       <width>221</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Miscellaneous 2</string>
+     </property>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>230</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QCheckBox" name="cbScreenfuls">
+         <property name="text">
+          <string>Write</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="sbScreenfulsCount">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maximum">
+          <number>1000000</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="lScreenfulsSeconds">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>260</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>screenfuls and terminate processing</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tabHardsubx">
@@ -1301,6 +1351,22 @@ QGroupBox::title {
       </property>
      </widget>
     </widget>
+    <widget class="QCheckBox" name="hsTicker">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>260</y>
+       <width>371</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Search for burned-in ticker text at the bottom of the screen</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tabDebug">
     <attribute name="title">
@@ -1312,7 +1378,7 @@ QGroupBox::title {
        <x>10</x>
        <y>10</y>
        <width>721</width>
-       <height>402</height>
+       <height>381</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
@@ -1407,7 +1473,7 @@ QGroupBox::title {
         </property>
        </widget>
       </item>
-      <item row="13" column="0">
+      <item row="14" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_13">
         <item>
          <widget class="QCheckBox" name="cbDebugESFile">
@@ -1435,6 +1501,13 @@ QGroupBox::title {
         </item>
        </layout>
       </item>
+      <item row="13" column="0">
+       <widget class="QCheckBox" name="cbTSDumpDefective">
+        <property name="text">
+         <string>Hex-dump defective TS packets</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </widget>
@@ -1460,7 +1533,7 @@ QGroupBox::title {
         <x>10</x>
         <y>20</y>
         <width>701</width>
-        <height>81</height>
+        <height>84</height>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout_2">
@@ -1957,9 +2030,9 @@ QGroupBox::title {
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>540</x>
        <y>100</y>
-       <width>121</width>
+       <width>191</width>
        <height>81</height>
       </rect>
      </property>
@@ -2223,7 +2296,7 @@ containing the EPG data from the source TS file</string>
       <rect>
        <x>340</x>
        <y>100</y>
-       <width>121</width>
+       <width>191</width>
        <height>81</height>
       </rect>
      </property>
@@ -2319,6 +2392,215 @@ If not specified, you need to have the default font installed</string>
        <string>Path to font:</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbCustomTTXTFileOutput">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>300</y>
+       <width>371</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Parameters for (Timed) Transcript output</string>
+     </property>
+     <widget class="QCheckBox" name="cbTTXTStartTime">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>121</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display start time</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTEndTime">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display end time</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTCaptionMode">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>131</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display caption mode</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTCaptionChannel">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>20</y>
+        <width>141</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display caption channel</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTRelativeTimestamp">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>40</y>
+        <width>141</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use a relative timestamp</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTXDSInfo">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>60</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Display XDS info</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbTTXTUseColors">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>20</y>
+        <width>72</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use colors</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCheckBox" name="cbCustomTTXTFile">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>280</y>
+       <width>221</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Customize (Timed) Transcript output</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="gbTranslate">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>300</y>
+       <width>341</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Translation</string>
+     </property>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Languages (e.g. ru,fr,it)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>35</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Set Translation Service authorization data to make
+translation possible. In case of Google Translate API - API Key</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>65</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>API key:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leAPITranslate">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>65</y>
+        <width>271</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leTranslate">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QCheckBox" name="cbTranslate">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>280</y>
+       <width>141</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enable Translation tool</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tabDecoder">
