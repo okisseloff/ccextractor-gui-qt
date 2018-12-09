@@ -167,11 +167,11 @@ QString CCXOptions::getOptionsInputString()
 	inputOptions += ui->rbTeletextForce->isChecked() ? " -teletext" : "";
 
     // Levenstein distance
-    if (ui->cbTeletextUseLevDist->isChecked() && !ui->rbTeletextDisable->isChecked()){
+    if (ui->cbTeletextUseLevDist->isChecked() && !ui->rbTeletextDisable->isChecked()) {
         if (ui->cbTeletextMinLevDist->isChecked() && ui->teTeletextMinLevDist->toPlainText() != ""){
             inputOptions += " -levdistmincnt " + ui->teTeletextMinLevDist->toPlainText();
         }
-        if (ui->cbTeletextMaxLevDist->isChecked() && ui->teTeletextMaxLevDist->toPlainText() != ""){
+        if (ui->cbTeletextMaxLevDist->isChecked() && ui->teTeletextMaxLevDist->toPlainText() != "") {
             inputOptions += " -levdistmaxcnt " + ui->teTeletextMaxLevDist->toPlainText();
         }
     } else {
@@ -214,7 +214,6 @@ QString CCXOptions::getOptionsDebugString()
 	if (ui->cbDebugESFile->isChecked()) {
 		debugOptions += " -cf " + ui->leDebugESFile->text();
 	}
-
 
 	return debugOptions;
 }
@@ -270,18 +269,18 @@ QString CCXOptions::getOptionsOutputString()
     // XDS
     outputOptions += ui->cbSaveXDS->isChecked() ? " -xds" : "";
     // pts jumps
-    if (ui->rbIgnorePTSJumps->isChecked()){
+    if (ui->rbIgnorePTSJumps->isChecked()) {
         outputOptions += " -ignoreptsjumps";
-    } else if (ui->rbFixPTSJumps->isChecked()){
+    } else if (ui->rbFixPTSJumps->isChecked()) {
         outputOptions += " -fixptsjumps";
     }
     // SEM
     outputOptions += ui->cbCreateSem->isChecked() ? " -sem" : "";
     // languages
-    if (ui->cbDVBLanguage->isChecked() && ui->leDVBLanguage->text() != ""){
+    if (ui->cbDVBLanguage->isChecked() && ui->leDVBLanguage->text() != "") {
         outputOptions += " -dvblang "+ui->leDVBLanguage->text();
     }
-    if (ui->cbAnotherLanguage->isChecked() && ui->leAnotherLanguage->text() != ""){
+    if (ui->cbAnotherLanguage->isChecked() && ui->leAnotherLanguage->text() != "") {
         outputOptions += " -ocrlang "+ui->leAnotherLanguage->text();
     }
     // XMLTV options
@@ -311,15 +310,15 @@ QString CCXOptions::getOptionsOutputString()
     customOutTTXT[4] = ui->cbTTXTRelativeTimestamp->isChecked() ? "1": "0";
     customOutTTXT[5] = ui->cbTTXTXDSInfo->isChecked() ? "1": "0";
     customOutTTXT[6] = ui->cbTTXTUseColors->isChecked() ? "1": "0";
-    if (ui->cbCustomTTXTFile->isChecked()){
+    if (ui->cbCustomTTXTFile->isChecked()) {
         outputOptions += " -customtxt "+customOutTTXT[0]+
-                customOutTTXT[1]+customOutTTXT[2]+
-                customOutTTXT[3]+customOutTTXT[4]+
-                customOutTTXT[5]+customOutTTXT[6];
+        customOutTTXT[1]+customOutTTXT[2]+
+        customOutTTXT[3]+customOutTTXT[4]+
+        customOutTTXT[5]+customOutTTXT[6];
     }
 
     //translate
-    if (ui->cbTranslate->isChecked() && ui->leAPITranslate->text() != "" && ui->leTranslate->text() != ""){
+    if (ui->cbTranslate->isChecked() && ui->leAPITranslate->text() != "" && ui->leTranslate->text() != "") {
         outputOptions += " -translate "+ui->leTranslate->text();
     }
 
@@ -346,7 +345,7 @@ QString CCXOptions::getOptionsDecoderString()
 	}
 
 	bool field1 = ui->cbDecoderField1->isChecked(),
-		field2 = ui->cbDecoderField2->isChecked();
+         field2 = ui->cbDecoderField2->isChecked();
 
 	if (field1 && field2) {
 		decoderOptions += " -12";
@@ -355,9 +354,7 @@ QString CCXOptions::getOptionsDecoderString()
 	} else {
 		//by default we handle only field 1
 	}
-
 	decoderOptions += ui->cbDecoderChannel2->isChecked() ? " -cc2" : "";
-
     // Force flush
     decoderOptions += ui->cbBufferFlush->isChecked() ? " -nospupngocr" : "";
     // KOC
@@ -493,28 +490,29 @@ void CCXOptions::on_cbTeletextUseLevDist_toggled(bool checked)
 
 void CCXOptions::on_cbInputType_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
     if (ui->cbInputType->currentData().toString() == "-in=es" ||
-            ui->cbInputType->currentData().toString() == "" ){
-        ui->cbCleanData->setEnabled(true);
-        ui->rbESDVB->setEnabled(true);
-        ui->rbTeletextCodec->setEnabled(true);
-        ui->rbESIgnoreDVB->setEnabled(true);
-        ui->rbTeletextIgnoreCodec->setEnabled(true);
+        ui->cbInputType->currentData().toString() == "" ) {
+            ui->cbCleanData->setEnabled(true);
+            ui->rbESDVB->setEnabled(true);
+            ui->rbTeletextCodec->setEnabled(true);
+            ui->rbESIgnoreDVB->setEnabled(true);
+            ui->rbTeletextIgnoreCodec->setEnabled(true);
     } else {
-        ui->cbCleanData->setEnabled(false);
-        ui->rbESDVB->setEnabled(false);
-        ui->rbTeletextCodec->setEnabled(false);
-        ui->rbESIgnoreDVB->setEnabled(false);
-        ui->rbTeletextIgnoreCodec->setEnabled(false);
+            ui->cbCleanData->setEnabled(false);
+            ui->rbESDVB->setEnabled(false);
+            ui->rbTeletextCodec->setEnabled(false);
+            ui->rbESIgnoreDVB->setEnabled(false);
+            ui->rbTeletextIgnoreCodec->setEnabled(false);
     }
 
     if (ui->cbInputType->currentData().toString() == "-in=ts" ||
-             ui->cbInputType->currentData().toString() == "") {
-        ui->gbXMLTVParams->setEnabled(true);
-        ui->cbTSDumpDefective->setEnabled(true);
+        ui->cbInputType->currentData().toString() == "") {
+            ui->gbXMLTVParams->setEnabled(true);
+            ui->cbTSDumpDefective->setEnabled(true);
     } else {
-        ui->gbXMLTVParams->setEnabled(false);
-        ui->cbTSDumpDefective->setEnabled(false);
+            ui->gbXMLTVParams->setEnabled(false);
+            ui->cbTSDumpDefective->setEnabled(false);
     }
 }
 
@@ -681,26 +679,26 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
 {
 	Q_UNUSED(index);
 	if (ui->cbOutputType->currentData().toString() == "-out=txt" ||
-			ui->cbOutputType->currentData().toString() == "-out=ttxt") {
-		ui->gbOutputTranscript->setEnabled(true);
+        ui->cbOutputType->currentData().toString() == "-out=ttxt") {
+            ui->gbOutputTranscript->setEnabled(true);
 	} else {
 		ui->gbOutputTranscript->setEnabled(false);
 	}
 
 	if (ui->cbOutputType->currentData().toString() == "" || //srt
-			ui->cbOutputType->currentData().toString() == "-out=sami") {
-		ui->cbOutputNoTypeTags->setEnabled(true);
-		ui->cbOutputNoColorTags->setEnabled(true);
+        ui->cbOutputType->currentData().toString() == "-out=sami") {
+            ui->cbOutputNoTypeTags->setEnabled(true);
+            ui->cbOutputNoColorTags->setEnabled(true);
 	} else {
 		ui->cbOutputNoTypeTags->setEnabled(false);
 		ui->cbOutputNoColorTags->setEnabled(false);
 	}
 
     if (ui->cbOutputType->currentData().toString() == "-out=srt" ||
-             ui->cbOutputType->currentData().toString() == "-out=sami" ||
-             ui->cbOutputType->currentData().toString() == "-out=vtt" ||
-             ui->cbOutputType->currentData().toString() == "") {
-        ui->cbNoHTMLEscape->setEnabled(true);
+        ui->cbOutputType->currentData().toString() == "-out=sami" ||
+        ui->cbOutputType->currentData().toString() == "-out=vtt" ||
+        ui->cbOutputType->currentData().toString() == "") {
+            ui->cbNoHTMLEscape->setEnabled(true);
     } else {
         ui->cbNoHTMLEscape->setEnabled(false);
     }
@@ -734,7 +732,7 @@ void CCXOptions::on_cbOutputType_currentIndexChanged(int index)
 void CCXOptions::on_cbOutputTrim_toggled(bool checked)
 {
 	bool srtOrSami = ui->cbOutputType->currentData().toString() == "" ||
-			ui->cbOutputType->currentData().toString() == "-out=sami";
+            ui->cbOutputType->currentData().toString() == "-out=sami";
 	ui->cbOutputAutodash->setEnabled(checked && srtOrSami);
 }
 
