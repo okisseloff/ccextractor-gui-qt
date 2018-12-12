@@ -36,6 +36,10 @@ private slots:
 	void on_cbMultiprogram_toggled(bool checked);
 	void on_rbMultiprogramNumber_toggled(bool checked);
 	void on_btnOutputPath_clicked();
+	void on_cbTranslate_toggled(bool checked);
+	void on_cbMKVLang_toggled(bool checked);
+	void on_cbOCRName_toggled(bool checked);
+	void on_buttonOCRName_clicked();
 	void on_cbTeletextPage_toggled(bool checked);
 	void on_cbEnableStartCredits_toggled(bool checked);
 	void on_cbEnableEndCredits_toggled(bool checked);
@@ -46,8 +50,19 @@ private slots:
 	void on_btnOutputCapFile_clicked();
 	void on_cbOutputCapFile_toggled(bool checked);
 	void on_cbOutputDefaultColor_toggled(bool checked);
+	void on_cbInputType_currentIndexChanged(int index);
+	void on_cbNoLeven_toggled(bool checked);
+	void on_cbMinNum_toggled(bool checked);
+	void on_cbMaxPct_toggled(bool checked);
+	void on_cbEnableSharing_toggled(bool checked);
+	void on_cbOutputFont_toggled(bool checked);
+	void on_btnOutputFont_clicked();
+	void on_cbXMLTV_toggled(bool checked);
+	void on_cbXMLTVInterval_toggled(bool checked);
 	void on_cbOutputType_currentIndexChanged(int index);
 	void on_cbOutputTrim_toggled(bool checked);
+	void on_cbOutputInterval_toggled(bool checked);
+	void on_cbOutputTranscriptCustom_toggled(bool checked);
 	void on_rbDecoderBufferDisable_toggled(bool checked);
 	void on_cbDecoderBufferSize_toggled(bool checked);
 	void on_btnDebugESFile_clicked();
@@ -57,13 +72,17 @@ private slots:
 	void on_cbHardsubx_toggled(bool checked);
 	void on_hsLumThresh_valueChanged(int value);
 	void on_hsConfThresh_valueChanged(int value);
-    void on_cbTeletextUseLevDist_toggled(bool checked);
-    void on_cbInputType_currentIndexChanged(int index);
-    void on_cbAnotherLanguage_toggled(bool checked);
-    void on_cbDVBLanguage_toggled(bool checked);
-    void on_cbCustomFont_toggled(bool checked);
-    void on_cbCustomTTXTFile_toggled(bool checked);
-    void on_cbTranslate_toggled(bool checked);
+
+      void on_cfOption_toggled(bool checked);
+
+      void on_cbNoEmpty_toggled(bool checked);
+
+      void on_cbNoTimeRef_toggled(bool checked);
+
+      void on_cbquant_toggled(bool checked);
+
+      void on_cbVidTrack_toggled(bool checked);
+
 private:
 	QString getOptionsInputString();
 	QString getOptionsDebugString();

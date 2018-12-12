@@ -192,6 +192,61 @@ QGroupBox::title {
         </layout>
        </widget>
       </widget>
+      <widget class="QGroupBox" name="gbTCP">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>331</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>TCP</string>
+       </property>
+       <widget class="QWidget" name="formLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>311</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelSourceTCP">
+           <property name="text">
+            <string>Port:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="leSourceTCPPort"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelSourceTCPPass">
+           <property name="text">
+            <string>Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="leSourceTCPPass"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelSourceTCPPort">
+           <property name="text">
+            <string>Description:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="leSourceTCPDesc"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -414,7 +469,7 @@ QGroupBox::title {
      <x>0</x>
      <y>0</y>
      <width>847</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -428,8 +483,6 @@ QGroupBox::title {
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
-    <addaction name="separator"/>
-    <addaction name="actionCommandList"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -442,11 +495,6 @@ QGroupBox::title {
   <action name="actionAbout">
    <property name="text">
     <string>About...</string>
-   </property>
-  </action>
-  <action name="actionCommandList">
-   <property name="text">
-    <string>Command list</string>
    </property>
   </action>
  </widget>
